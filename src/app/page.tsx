@@ -1,7 +1,7 @@
 "use client";
 
 import { Web3AuthProvider } from "@web3auth/modal/react";
-import HomePage from "@/components/pages/HomePage";
+import { HomePage } from "@/components/pages/HomePage";
 import { usePlatform } from "@/nextjs/hooks/usePlatform";
 import web3AuthContextConfig from "@/web3auth/web3authContext";
 
