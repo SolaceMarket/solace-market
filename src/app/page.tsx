@@ -2,7 +2,7 @@
 
 import { Web3AuthProvider } from "@web3auth/modal/react";
 import { usePlatform } from "@/nextjs/hooks/usePlatform";
-import { HomePage } from "@/pages/HomePage";
+import HomePage from "@/pages/HomePage";
 import web3AuthContextConfig from "@/web3auth/web3authContext";
 
 export default function Home() {
