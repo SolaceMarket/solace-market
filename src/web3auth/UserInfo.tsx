@@ -21,7 +21,7 @@ export function UserInfo() {
           Refresh User Info
         </button>
       </div>
-      {error && <div>{error.message}</div>}
+      {error && <div>{(error as Error)?.message}</div>}
 
       <div>
         <h1>Web3Auth</h1>
