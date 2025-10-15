@@ -34,6 +34,18 @@ export function FirebaseDemoPage() {
   //   }
   // });
 
+  async function mockApiCall() {
+    try {
+      const response = await fetch("/demo/firebase/api", {
+        method: "GET",
+      });
+      const data = await response.json();
+      console.log("API Response:", data);
+    } catch (error) {
+      console.error("API Call Error:", error);
+    }
+  }
+
   return (
     <div>
       <h1>Firebase Demo Page</h1>
@@ -46,6 +58,10 @@ export function FirebaseDemoPage() {
             <p>Email is verified. You can access protected content.</p>
             <pre>{JSON.stringify(userSession, null, 2)}</pre>
           </div>
+
+          <button type="button" onClick={() => mockApiCall()}>
+            Call Mock API
+          </button>
 
           <button type="button" onClick={() => auth.signOut()}>
             Sign Out
