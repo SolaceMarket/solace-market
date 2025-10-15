@@ -1,3 +1,19 @@
+"use client";
+
+import { Web3AuthProvider } from "@web3auth/modal/react";
+import { usePlatform } from "@/nextjs/hooks/usePlatform";
+import { HomePage } from "@/pages/HomePage";
+import web3AuthContextConfig from "@/web3auth/web3authContext";
+
 export default function Home() {
-  return <div>hello</div>;
+  const [isDetermined, platform] = usePlatform();
+  if (!isDetermined || platform === "server") {
+    return null;
+  }
+
+  return (
+    <Web3AuthProvider config={web3AuthContextConfig}>
+      <HomePage />
+    </Web3AuthProvider>
+  );
 }
