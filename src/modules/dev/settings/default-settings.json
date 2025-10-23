@@ -1,0 +1,76 @@
+{
+  "console": {
+    "defaultTab": "tables",
+    "autoOpen": false,
+    "directCommandPalette": false,
+    "keyboardShortcuts": {
+      "toggle": "Ctrl+M",
+      "close": "Escape",
+      "executeQuery": "Ctrl+Enter"
+    },
+    "theme": {
+      "terminalMode": true,
+      "fontSize": "sm",
+      "fontFamily": "mono"
+    }
+  },
+  "tables": {
+    "sidebar": {
+      "defaultMode": "always-open",
+      "width": 320,
+      "collapsedWidth": 48
+    },
+    "navigation": {
+      "mode": "quickSwitch",
+      "verticalSidebarWidth": 200
+    },
+    "sampleData": {
+      "defaultLimit": 5,
+      "maxCellLength": 50,
+      "truncateText": true
+    },
+    "columns": {
+      "showTypes": true,
+      "showConstraints": true,
+      "showDefaults": true
+    }
+  },
+  "query": {
+    "editor": {
+      "lineNumbers": false,
+      "wordWrap": true,
+      "autoComplete": false
+    },
+    "execution": {
+      "autoExecute": false,
+      "showExecutionTime": true,
+      "maxResults": 1000
+    },
+    "history": {
+      "enabled": true,
+      "maxEntries": 50,
+      "persistAcrossSessions": true
+    }
+  },
+  "stats": {
+    "refresh": {
+      "autoRefresh": false,
+      "interval": 30000
+    },
+    "display": {
+      "showCharts": true,
+      "showTables": true,
+      "showIndexes": true
+    }
+  },
+  "admin": {
+    "dangerousOperations": {
+      "requireConfirmation": true,
+      "showWarnings": true
+    },
+    "backup": {
+      "autoBackup": false,
+      "backupInterval": 3600000
+    }
+  }
+}

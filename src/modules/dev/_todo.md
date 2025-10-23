@@ -1,0 +1,3 @@
+- When executing in the command bar a SELECT without a limit first wrap and execute with a COUNT so it can be displayed how many entries were found and, additionally select with a pagination of like 250 entries.
+- The suggestions in the SQL query in the command bar should provide column names after writing "WHERE".
+- The suggestion for words in the command bar for sql queries should be instant and not after three characters after typing "WHERE".

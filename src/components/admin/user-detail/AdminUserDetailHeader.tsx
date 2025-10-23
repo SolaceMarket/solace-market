@@ -1,0 +1,56 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import type { User as FirebaseUser } from "firebase/auth";
+import { auth } from "@/firebase/InitializeFirebase";
+import type { DetailedUser } from "./types";
+
+interface AdminUserDetailHeaderProps {
+  user: DetailedUser;
+  firebaseUser: FirebaseUser | null;
+}
+
+export default function AdminUserDetailHeader({
+  user,
+  firebaseUser,
+}: AdminUserDetailHeaderProps) {
+  const router = useRouter();
+
+  return (
+    <div className="bg-white shadow">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-6">
+          <div className="flex items-center space-x-4">
+            <button
+              type="button"
+              onClick={() => router.push("/admin/users")}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              ← Back to Users
+            </button>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                {user.profile
+                  ? `${user.profile.firstName} ${user.profile.lastName}`
+                  : "User Details"}
+              </h1>
+              <p className="mt-1 text-sm text-gray-500">
+                {user.email} • {user.uid}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <span className="text-sm text-gray-500">{firebaseUser?.email}</span>
+            <button
+              type="button"
+              onClick={() => auth.signOut()}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
