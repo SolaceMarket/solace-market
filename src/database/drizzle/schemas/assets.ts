@@ -1,4 +1,5 @@
-import { sqliteTable, text, integer, real } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
+import { integer, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const assetsTable = sqliteTable("assets", {
   id: text("id").primaryKey(),
@@ -21,9 +22,24 @@ export const assetsTable = sqliteTable("assets", {
   fractionable: integer("fractionable", { mode: "boolean" })
     .notNull()
     .default(false),
-  attributes: text("attributes"), // JSON field for additional attributes
-  createdAt: text("created_at").notNull().default("datetime('now')"),
-  updatedAt: text("updated_at").notNull().default("datetime('now')"),
+
+  // Attribute flags
+  ptpNoException: integer("ptp_no_exception", { mode: "boolean" }).default(
+    false,
+  ),
+  ptpWithException: integer("ptp_with_exception", { mode: "boolean" }).default(
+    false,
+  ),
+  ipo: integer("ipo", { mode: "boolean" }).default(false),
+  hasOptions: integer("has_options", { mode: "boolean" }).default(false),
+  optionsLateClose: integer("options_late_close", { mode: "boolean" }).default(
+    false,
+  ),
+
+  // Timestamps
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  deletedAt: text("deleted_at"), // Soft delete field
 });
 
 export type InsertAsset = typeof assetsTable.$inferInsert;
