@@ -6,7 +6,7 @@ export const assetsTable = sqliteTable("assets", {
   class: text("class").notNull(),
   exchange: text("exchange").notNull(),
   symbol: text("symbol").notNull(),
-  name: text("name").unique().notNull(),
+  name: text("name"),
   status: text("status").notNull(),
   tradable: integer("tradable", { mode: "boolean" }).notNull().default(false),
   marginable: integer("marginable", { mode: "boolean" })

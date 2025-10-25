@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ed73ee2b-62c0-4cb2-8149-5b0aba5368e9",
+    "account_number": "966266225",
+    "status": "ACCOUNT_CLOSED",
+    "crypto_status": "ACCOUNT_CLOSED",
+    "kyc_results": {
+      "reject": {},
+      "accept": {},
+      "indeterminate": {},
+      "summary": "pass"
+    },
+    "currency": "USD",
+    "last_equity": "0",
+    "created_at": "2025-10-16T00:59:45.152723Z",
+    "account_type": "trading",
+    "trading_type": "margin",
+    "enabled_assets": [
+      "us_equity",
+      "crypto"
+    ],
+    "investment_objective": "market_speculation",
+    "investment_time_horizon": "more_than_10_years",
+    "risk_tolerance": "conservative",
+    "liquidity_needs": "does_not_matter"
+  },
+  {
+    "id": "d0833dbb-27fb-4e17-ae54-a330c5e7956e",
+    "account_number": "966816098",
+    "status": "ACTIVE",
+    "crypto_status": "ACTIVE",
+    "kyc_results": {
+      "reject": {},
+      "accept": {},
+      "indeterminate": {},
+      "summary": "pass"
+    },
+    "currency": "USD",
+    "last_equity": "0",
+    "created_at": "2025-10-16T00:29:25.239637Z",
+    "account_type": "trading",
+    "trading_type": "margin",
+    "enabled_assets": [
+      "us_equity",
+      "crypto"
+    ],
+    "investment_objective": "market_speculation",
+    "investment_time_horizon": "more_than_10_years",
+    "risk_tolerance": "conservative",
+    "liquidity_needs": "does_not_matter"
+  }
+]
