@@ -43,8 +43,5 @@ export function assetDetailsToAsset(assetDetails: AssetDetails): Asset {
     ipo: false,
     has_options: false,
     options_late_close: false,
-    // Timestamp fields
-    created_at: assetDetails.createdAt,
-    updated_at: assetDetails.updatedAt,
   };
 }

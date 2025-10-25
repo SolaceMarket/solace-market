@@ -19,8 +19,4 @@ export interface Asset {
   ipo: boolean;
   has_options: boolean;
   options_late_close: boolean;
-  // Timestamp fields
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string | null;
 }
