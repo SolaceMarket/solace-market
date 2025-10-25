@@ -1,3 +1,5 @@
+import type { User as FirebaseUser } from "firebase/auth";
+
 export interface AssetDetails {
   id: string;
   class: string;
@@ -62,4 +64,32 @@ export interface AssetsFiltersProps {
 export interface AssetsPaginationProps {
   pagination: Pagination;
   onPageChange: (page: number) => void;
+}
+
+// New types for refactored components
+export interface QuickAccessAsset {
+  symbol: string;
+  name: string;
+  type: "crypto" | "stock";
+  icon: string;
+  id: string;
+}
+
+export interface BaseCurrency {
+  symbol: string;
+  name: string;
+  icon: string;
+  color: "orange" | "purple" | "blue" | "green";
+}
+
+export interface QuickAccessSectionProps {
+  firebaseUser: FirebaseUser | null;
+  onClearFilters: () => void;
+  onNavigateToAsset?: (assetId: string) => void;
+}
+
+export interface BaseCurrencyFiltersProps {
+  filters: AssetFilters;
+  onFilterChange: (filters: Partial<AssetFilters>) => void;
+  onResetPagination: () => void;
 }

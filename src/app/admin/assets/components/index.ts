@@ -11,3 +11,7 @@ export { default as AssetsPageHeader } from "./AssetsPageHeader";
 export { default as AssetsFilters } from "./AssetsFilters";
 export { default as AssetsTable } from "./AssetsTable";
 export { default as AssetsPagination } from "./AssetsPagination";
+
+// Quick Access Components
+export { QuickAccessSection } from "./QuickAccessSection";
+export { BaseCurrencyFilters } from "./BaseCurrencyFilters";
