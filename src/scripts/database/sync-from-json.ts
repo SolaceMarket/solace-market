@@ -1,9 +1,8 @@
-import { insertAsset } from "@/turso/tables/assets/insertAsset";
-import { createDatabaseTables } from "@/turso/database";
-import { client } from "@/turso/database";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Asset } from "@/alpaca/assets/Asset";
+import { client, createDatabaseTables } from "@/turso/database";
+import { insertAsset } from "@/turso/tables/assets/insertAsset";
 
 interface AssetJsonData {
   id: string;
