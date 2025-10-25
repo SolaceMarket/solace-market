@@ -4,7 +4,6 @@ import { client } from "@/turso/database";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Asset } from "@/alpaca/assets/Asset";
-import { createAssetsTable } from "@/turso/tables/assets/createAssetsTable";
 
 interface AssetJsonData {
   id: string;
@@ -212,10 +211,4 @@ export const syncFromJson = async () => {
 };
 
 // Execute the sync if this file is run directly
-if (import.meta.main) {
-  // await syncFromJson();
-
-  await createAssetsTable();
-
-  await importAssetsFromJson();
-}
+await importAssetsFromJson();
