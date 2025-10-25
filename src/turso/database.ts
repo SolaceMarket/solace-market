@@ -1,10 +1,5 @@
 import { createClient } from "@libsql/client";
-import { createAccountsTable } from "@/turso/tables/accounts/createAccountsTable";
-import { createAssetsTable } from "@/turso/tables/assets/createAssetsTable";
-import { createPortfoliosTable } from "@/turso/tables/portfolios/createPortfoliosTable";
-import { createHoldingsTable } from "@/turso/tables/portfolios/createHoldingsTable";
-import { createTransactionsTable } from "@/turso/tables/portfolios/createTransactionsTable";
-import { createUsersTable } from "@/turso/tables/users/createUsersTable";
+import { createDatabaseTables as runDrizzleMigrations } from "@/database/drizzle/migrate";
 
 const url = process.env.TURSO_DATABASE_URL;
 if (!url) {
@@ -33,10 +28,6 @@ export const client = createClient(
 );
 
 export const createDatabaseTables = async () => {
-  await createUsersTable();
-  await createAssetsTable();
-  await createAccountsTable();
-  await createPortfoliosTable();
-  await createHoldingsTable();
-  await createTransactionsTable();
+  // Use Drizzle migrations instead of raw SQL table creation
+  await runDrizzleMigrations();
 };

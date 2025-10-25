@@ -13,7 +13,7 @@
     "db:sync:to:json": "bun ./src/scripts/database/sync-to-json.ts",
     "db:sync:from:json": "bun ./src/scripts/database/sync-from-json.ts",
     "db:create": "bun ./src/scripts/database/create.ts",
-    "db:reset": "rm -f local.db && bun run 'db:create' && bun run 'sync:from:json'",
+    "db:reset": "rm -f local.db && bun run 'db:generate' && bun run 'db:create' && bun run 'db:sync:from:json'",
     "create-accounts": "bun ./src/scripts/create-accounts.ts",
     "meta": "bun ./src/scripts/meta.ts",
     "dev": "next dev --turbopack",

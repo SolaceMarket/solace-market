@@ -1,7 +1,8 @@
+import type { AlpacaAccount } from "@/alpaca/accounts/Account";
 import type { AlpacaAccountInfo } from "@/types/admin";
 
 interface AlpacaAccountsSectionProps {
-  accounts: AlpacaAccountInfo[];
+  accounts: AlpacaAccount[];
   loading: boolean;
   onRefresh: () => void;
 }
@@ -53,63 +54,69 @@ export default function AlpacaAccountsSection({
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {accounts.map((account) => (
-              <tr key={account.alpacaAccount.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">
-                    #{account.alpacaAccount.accountNumber}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    {account.alpacaAccount.id}
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex flex-col space-y-1">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        account.alpacaAccount.status === "ACTIVE"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {account.alpacaAccount.status}
-                    </span>
-                    <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        account.alpacaAccount.kycSummary === "pass"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-yellow-100 text-yellow-800"
-                      }`}
-                    >
-                      KYC: {account.alpacaAccount.kycSummary}
-                    </span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">
-                    {account.contact?.emailAddress || "N/A"}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    {account.identity
-                      ? `${account.identity.givenName} ${account.identity.familyName}`
-                      : "N/A"}
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  {account.user ? (
-                    <div className="text-sm">
-                      <div className="text-gray-900">{account.user.email}</div>
-                      <div className="text-xs text-gray-500">Linked</div>
-                    </div>
-                  ) : (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                      Orphaned
-                    </span>
-                  )}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {new Date(
-                    account.alpacaAccount.createdAt,
-                  ).toLocaleDateString()}
+              //   <tr key={account.alpacaAccount.id} className="hover:bg-gray-50">
+              //     <td className="px-6 py-4 whitespace-nowrap">
+              //       <div className="text-sm font-medium text-gray-900">
+              //         #{account.alpacaAccount.accountNumber}
+              //       </div>
+              //       <div className="text-xs text-gray-500">
+              //         {account.alpacaAccount.id}
+              //       </div>
+              //     </td>
+              //     <td className="px-6 py-4 whitespace-nowrap">
+              //       <div className="flex flex-col space-y-1">
+              //         <span
+              //           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+              //             account.alpacaAccount.status === "ACTIVE"
+              //               ? "bg-green-100 text-green-800"
+              //               : "bg-red-100 text-red-800"
+              //           }`}
+              //         >
+              //           {account.alpacaAccount.status}
+              //         </span>
+              //         <span
+              //           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+              //             account.alpacaAccount.kycSummary === "pass"
+              //               ? "bg-green-100 text-green-800"
+              //               : "bg-yellow-100 text-yellow-800"
+              //           }`}
+              //         >
+              //           KYC: {account.alpacaAccount.kycSummary}
+              //         </span>
+              //       </div>
+              //     </td>
+              //     <td className="px-6 py-4 whitespace-nowrap">
+              //       <div className="text-sm text-gray-900">
+              //         {account.contact?.emailAddress || "N/A"}
+              //       </div>
+              //       <div className="text-xs text-gray-500">
+              //         {account.identity
+              //           ? `${account.identity.givenName} ${account.identity.familyName}`
+              //           : "N/A"}
+              //       </div>
+              //     </td>
+              //     <td className="px-6 py-4 whitespace-nowrap">
+              //       {account.user ? (
+              //         <div className="text-sm">
+              //           <div className="text-gray-900">{account.user.email}</div>
+              //           <div className="text-xs text-gray-500">Linked</div>
+              //         </div>
+              //       ) : (
+              //         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+              //           Orphaned
+              //         </span>
+              //       )}
+              //     </td>
+              //     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              //       {new Date(
+              //         account.alpacaAccount.createdAt,
+              //       ).toLocaleDateString()}
+              //     </td>
+              //   </tr>
+
+              <tr key={account.id}>
+                <td>
+                  <pre>{JSON.stringify(account, null, 2)}</pre>
                 </td>
               </tr>
             ))}
