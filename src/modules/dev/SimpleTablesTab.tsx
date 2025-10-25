@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useTransition, useEffect } from "react";
+import { useEffect, useState, useTransition } from "react";
+import type { DatabaseStats, TableInfo } from "./database-actions";
 import { getTableInfo, getTableSample } from "./database-actions";
-import type { TableInfo, DatabaseStats } from "./database-actions";
+import { useSettings } from "./settings";
 import { TableDetailsView } from "./tables";
 import { VerticalTableSidebar } from "./VerticalTableSidebar";
-import { useSettings } from "./settings";
 
 interface SimpleTablesTabProps {
   tables: string[];
@@ -14,7 +14,12 @@ interface SimpleTablesTabProps {
   onTableCommandHandled?: () => void;
 }
 
-export function SimpleTablesTab({ tables, stats, selectedTableFromCommand, onTableCommandHandled }: SimpleTablesTabProps) {
+export function SimpleTablesTab({
+  tables,
+  stats,
+  selectedTableFromCommand,
+  onTableCommandHandled,
+}: SimpleTablesTabProps) {
   const { settings, getSetting } = useSettings();
   const [selectedTable, setSelectedTable] = useState<string | null>(null);
   const [tableInfo, setTableInfo] = useState<TableInfo | null>(null);
@@ -22,8 +27,10 @@ export function SimpleTablesTab({ tables, stats, selectedTableFromCommand, onTab
   const [isPending, startTransition] = useTransition();
 
   // Get navigation mode from settings - access directly from settings to ensure reactivity
-  const navigationMode = (settings.tables?.navigation?.mode as string) || "quickSwitch";
-  const verticalSidebarWidth = (settings.tables?.navigation?.verticalSidebarWidth as number) || 200;
+  const navigationMode =
+    (settings.tables?.navigation?.mode as string) || "quickSwitch";
+  const verticalSidebarWidth =
+    (settings.tables?.navigation?.verticalSidebarWidth as number) || 200;
 
   const loadTableDetails = (tableName: string) => {
     startTransition(async () => {
@@ -64,23 +71,30 @@ export function SimpleTablesTab({ tables, stats, selectedTableFromCommand, onTab
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 overflow-y-auto">
             {tables.map((table) => {
               // Get table stats for additional information
-              const tableStats = stats?.tables.find(t => t.name === table);
+              const tableStats = stats?.tables.find((t) => t.name === table);
               const rowCount = tableStats?.rowCount || 0;
               const columnCount = tableStats?.columnCount || 0;
-              
+
               // Determine table size category for visual indicator
               const getSizeIndicator = (rows: number) => {
-                if (rows === 0) return { icon: "📄", color: "text-gray-500", label: "Empty" };
-                if (rows < 100) return { icon: "📄", color: "text-blue-400", label: "Small" };
-                if (rows < 10000) return { icon: "📊", color: "text-green-400", label: "Medium" };
+                if (rows === 0)
+                  return { icon: "📄", color: "text-gray-500", label: "Empty" };
+                if (rows < 100)
+                  return { icon: "📄", color: "text-blue-400", label: "Small" };
+                if (rows < 10000)
+                  return {
+                    icon: "📊",
+                    color: "text-green-400",
+                    label: "Medium",
+                  };
                 return { icon: "🗃️", color: "text-orange-400", label: "Large" };
               };
-              
+
               const sizeInfo = getSizeIndicator(rowCount);
-              
+
               return (
                 <button
                   key={table}
@@ -89,19 +103,23 @@ export function SimpleTablesTab({ tables, stats, selectedTableFromCommand, onTab
                   className="p-4 bg-gray-800 hover:bg-gray-700 border border-gray-600 hover:border-green-500/50 rounded-lg text-left transition-colors group"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <span className={`text-xl ${sizeInfo.color}`}>{sizeInfo.icon}</span>
+                    <span className={`text-xl ${sizeInfo.color}`}>
+                      {sizeInfo.icon}
+                    </span>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-green-300 group-hover:text-green-200 truncate">
                         {table}
                       </h3>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className={`text-xs px-2 py-1 rounded-full ${sizeInfo.color} bg-opacity-20`}>
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full ${sizeInfo.color} bg-opacity-20`}
+                        >
                           {sizeInfo.label}
                         </span>
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Table Statistics */}
                   <div className="space-y-2 mb-3">
                     <div className="flex items-center justify-between text-sm">
@@ -117,7 +135,7 @@ export function SimpleTablesTab({ tables, stats, selectedTableFromCommand, onTab
                       </span>
                     </div>
                   </div>
-                  
+
                   <p className="text-sm text-gray-400 group-hover:text-gray-300">
                     Click to view schema and sample data
                   </p>
