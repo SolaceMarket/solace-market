@@ -2,13 +2,13 @@ import { defineConfig } from 'drizzle-kit';
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 
-const url = process.env.TURSO_CONNECTION_URL;
+const url = process.env.TURSO_DATABASE_URL;
 const authToken = process.env.TURSO_AUTH_TOKEN;
 
 // Validate required environment variables for production
 if (nodeEnv === 'production') {
   if (!url) {
-    throw new Error('TURSO_CONNECTION_URL is required in production');
+    throw new Error('TURSO_DATABASE_URL is required in production');
   }
   if (!authToken) {
     throw new Error('TURSO_AUTH_TOKEN is required in production');
