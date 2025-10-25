@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { onAuthStateChanged, type User as FirebaseUser } from "firebase/auth";
 import { auth } from "@/firebase/InitializeFirebase";
+import Loader from "@/components/ui/Loader";
 import {
   AdminUserDetailHeader,
   EditModal,
@@ -18,6 +19,7 @@ import {
   FirebaseInfoCard,
   SecurityInfoCard,
   PreferencesCard,
+  AlpacaAccountCard,
   type DetailedUser,
   type EditMode,
 } from "@/components/admin/user-detail";
@@ -118,11 +120,7 @@ export default function AdminUserDetailPage() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!user) {
@@ -162,22 +160,31 @@ export default function AdminUserDetailPage() {
           />
           <ProfileInfoCard user={user} onEdit={handleEdit} />
           <WalletInfoCard user={user} onEdit={handleEdit} />
-          
+
           {/* KYC Section - spans full width if user has KYC data */}
           {user.kyc && (
             <>
               <div className="lg:col-span-2">
                 <KYCComplianceCard user={user} />
               </div>
-              <KYCInfoCard user={user} onEdit={handleEdit} onUpdate={updateUser} />
+              <KYCInfoCard
+                user={user}
+                onEdit={handleEdit}
+                onUpdate={updateUser}
+              />
               <KYCDocumentsCard user={user} />
             </>
           )}
           {!user.kyc && (
-            <KYCInfoCard user={user} onEdit={handleEdit} onUpdate={updateUser} />
+            <KYCInfoCard
+              user={user}
+              onEdit={handleEdit}
+              onUpdate={updateUser}
+            />
           )}
-          
+
           <BrokerInfoCard user={user} onEdit={handleEdit} />
+          <AlpacaAccountCard user={user} onRefresh={fetchUser} />
           <FirebaseInfoCard user={user} onEdit={handleEdit} />
           <SecurityInfoCard user={user} onEdit={handleEdit} />
           <PreferencesCard user={user} onEdit={handleEdit} />

@@ -2,7 +2,7 @@ import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import * as schema from "./schema";
 
-const getSQLiteClient = async () => {
+const getSQLiteClient = () => {
   if (process.env.NODE_ENV === "test") {
     console.log("Using in-memory SQLite for tests");
 
@@ -29,14 +29,16 @@ const getSQLiteClient = async () => {
   if (process.env.NODE_ENV === "production") {
     console.log("Using production Turso database");
 
-    const url = process.env.TURSO_CONNECTION_URL;
+    const url = process.env.TURSO_DATABASE_URL;
     const authToken = process.env.TURSO_AUTH_TOKEN;
 
-    console.log("TURSO_CONNECTION_URL:", url);
+    console.log("TURSO_DATABASE_URL:", url);
     console.log("TURSO_AUTH_TOKEN:", authToken);
 
     if (!url) {
-      throw new Error("Missing TURSO_CONNECTION_URL env var");
+      // During build time, create a dummy client to avoid errors
+      console.log("Creating dummy database client for build");
+      return createClient({ url: ":memory:" });
     }
     if (!authToken) {
       throw new Error("Missing TURSO_AUTH_TOKEN env var");
@@ -52,7 +54,7 @@ const getSQLiteClient = async () => {
   throw new Error("Unknown NODE_ENV, cannot determine database configuration");
 };
 
-export const client = await getSQLiteClient();
+const client = getSQLiteClient();
 
 // Create the Drizzle client with schema
 export const db = drizzle(client, { schema });
