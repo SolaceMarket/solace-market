@@ -51,6 +51,7 @@ export interface AssetsListProps {
   assets: AdminAsset[];
   pagination: Pagination;
   onAssetClick: (assetId: string) => void;
+  isLoading?: boolean;
 }
 
 export interface AssetsFiltersProps {

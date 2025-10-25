@@ -86,7 +86,6 @@ export async function AssetPage({ symbol }: AssetPageProps) {
             trend="up"
           />
         </div>
-
         {/* Technical Analysis */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -94,7 +93,6 @@ export async function AssetPage({ symbol }: AssetPageProps) {
           </h2>
           <TechnicalAnalysis analytics={analytics} />
         </div>
-
         {/* News and Similar Assets */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
           {/* News Section */}
@@ -107,7 +105,6 @@ export async function AssetPage({ symbol }: AssetPageProps) {
             <SimilarAssets assets={similarAssets} currentSymbol={symbol} />
           </div>
         </div>
-
         {/* Asset Details */}
         <div className="bg-white rounded-lg shadow-md p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">

@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import type { Asset } from "@/alpaca/assets/Asset";
 import { baseUrl, headers } from "@/alpaca/config";
 
@@ -27,11 +26,6 @@ export const getAssets = async () => {
     headers,
   });
   const assetsData = (await assetsResponse.json()) as Asset[];
-  //   console.log("assets data as json", assetsData);
-  const assetsCount = assetsData.length;
-  console.log("Total assets count:", assetsCount);
-
-  fs.writeFileSync("assets.json", JSON.stringify(assetsData, null, 2), "utf-8");
 
   return assetsData;
 };

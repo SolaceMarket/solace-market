@@ -10,19 +10,30 @@ export default function AssetsTable({
   assets,
   pagination,
   onAssetClick,
+  isLoading = false,
 }: AssetsListProps) {
   const router = useRouter();
 
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <div className="px-6 py-4 border-b border-gray-200">
-        <h2 className="text-lg font-medium text-gray-900">
-          Assets ({pagination.total})
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-medium text-gray-900">
+            Assets ({pagination.total})
+          </h2>
+          {isLoading && (
+            <div className="flex items-center space-x-2 text-sm text-gray-500">
+              <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+              <span>Updating...</span>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
+        <table
+          className={`min-w-full divide-y divide-gray-200 ${isLoading ? "opacity-75" : ""}`}
+        >
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">

@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { initializeApp, getApps, cert, type App } from "firebase-admin/app";
+import { initializeFirebaseAdmin } from "@/lib/firebase/admin";
 import { requireAuth } from "@/lib/authMiddleware";
 import { createUser, getUser } from "@/lib/tursoUsers";
 import type {
@@ -8,37 +8,9 @@ import type {
   InitOnboardingResponse,
   Locale,
 } from "@/types/onboarding";
-// to ES6 import
-import * as admin from "firebase-admin";
-
-import serviceAccount from "@/solace-market-test-firebase-adminsdk-fbsvc-8963049c79.json";
 
 // Initialize Firebase Admin if not already initialized
-let adminApp: App;
-try {
-  console.log("Firebase Admin Apps:", getApps().length);
-
-  if (!getApps().length) {
-    // adminApp = initializeApp({
-    //   credential: cert({
-    //     projectId: process.env.FIREBASE_PROJECT_ID,
-    //     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    //     privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    //   }),
-    // });
-
-    adminApp = initializeApp({
-      // @ts-ignore
-      credential: admin.credential.cert(serviceAccount),
-    });
-  } else {
-    adminApp = getApps()[0];
-
-    console.log("Firebase Admin already initialized");
-  }
-} catch (error) {
-  console.error("Firebase Admin initialization error:", error);
-}
+initializeFirebaseAdmin();
 
 export async function POST(request: NextRequest) {
   try {

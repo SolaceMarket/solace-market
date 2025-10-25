@@ -2,14 +2,13 @@ import { client } from "@/turso//database";
 
 export const createAssetsTable = async () => {
   try {
-    // Create table if not exists
     const result = await client.execute(
       `CREATE TABLE IF NOT EXISTS assets (
         id TEXT PRIMARY KEY,
         class TEXT,
         exchange TEXT,
         symbol TEXT,
-        name TEXT UNIQUE,
+        name TEXT,
         status TEXT,
         tradable BOOLEAN,
         marginable BOOLEAN,
@@ -19,7 +18,14 @@ export const createAssetsTable = async () => {
         shortable BOOLEAN,
         easy_to_borrow BOOLEAN,
         fractionable BOOLEAN,
-        attributes TEXT
+        ptp_no_exception BOOLEAN DEFAULT FALSE,
+        ptp_with_exception BOOLEAN DEFAULT FALSE,
+        ipo BOOLEAN DEFAULT FALSE,
+        has_options BOOLEAN DEFAULT FALSE,
+        options_late_close BOOLEAN DEFAULT FALSE,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        deleted_at DATETIME DEFAULT NULL
         );`,
     );
     console.log("Created assets table", result);

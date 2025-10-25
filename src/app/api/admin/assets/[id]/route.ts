@@ -6,7 +6,7 @@ import { verifyAdminAccess } from "@/lib/adminMiddleware";
 // Get single asset by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     // Verify admin authentication and authorization
@@ -15,7 +15,7 @@ export async function GET(
       return adminResult.error;
     }
 
-    const assetId = params.id;
+    const assetId = (await params).id;
     if (!assetId) {
       return NextResponse.json(
         { error: "Bad Request", message: "Asset ID is required" },

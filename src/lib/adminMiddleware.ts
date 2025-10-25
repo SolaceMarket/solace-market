@@ -1,10 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { getApps, initializeApp } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
+import { verifyFirebaseToken } from "./firebase/admin";
 import { isAdminByDatabase, isAdminByFirebase } from "./adminAuth";
-import * as admin from "firebase-admin";
-import serviceAccount from "@/solace-market-test-firebase-adminsdk-fbsvc-8963049c79.json";
 
 /**
  * Admin verification result
@@ -60,20 +57,8 @@ async function verifyAuthToken(
 
     const token = authHeader.substring(7);
 
-    // Initialize Firebase Admin
-    const apps = getApps();
-    const adminApp =
-      apps.length > 0
-        ? apps[0]
-        : initializeApp({
-            credential: admin.credential.cert(
-              serviceAccount as admin.ServiceAccount,
-            ),
-          });
-
-    // Verify token
-    const auth = getAuth(adminApp);
-    const decodedToken = await auth.verifyIdToken(token);
+    // Verify token using centralized utility
+    const decodedToken = await verifyFirebaseToken(token);
 
     return { uid: decodedToken.uid };
   } catch (error) {

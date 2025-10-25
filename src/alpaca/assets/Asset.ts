@@ -13,5 +13,14 @@ export interface Asset {
   shortable: boolean;
   easy_to_borrow: boolean;
   fractionable: boolean;
-  attributes: string[];
+  // Specific attribute flags
+  ptp_no_exception: boolean;
+  ptp_with_exception: boolean;
+  ipo: boolean;
+  has_options: boolean;
+  options_late_close: boolean;
+  // Timestamp fields
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
 }

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/InitializeFirebase";
 import type { User as FirebaseUser } from "firebase/auth";
 import type { Pagination, AssetFilters } from "./types";
 import { useAssets } from "./hooks/useAssets";
+import { useUrlSync } from "./hooks/useUrlSync";
 import {
   AssetsPageHeader,
   AssetsFilters,
@@ -31,6 +32,14 @@ export default function AdminAssetsPage() {
     tradable: "",
   });
 
+  // Synchronize state with URL parameters
+  useUrlSync({
+    filters,
+    pagination,
+    onFiltersChange: setFilters,
+    onPaginationChange: setPagination,
+  });
+
   // Authentication check
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,29 +54,43 @@ export default function AdminAssetsPage() {
   }, [router]);
 
   // Fetch assets using TanStack Query
-  const {
-    data: assetsData,
-    isLoading: loading,
-    error,
-  } = useAssets({
+  const { data, isLoading, error, isFetching } = useAssets({
     firebaseUser,
     pagination,
     filters,
   });
 
-  const assets = assetsData?.assets || [];
+  const assets = data?.assets || [];
 
   // Update pagination when data changes
   useEffect(() => {
-    if (assetsData?.pagination) {
-      setPagination(assetsData.pagination);
+    if (data?.pagination) {
+      setPagination(data.pagination);
     }
-  }, [assetsData]);
+  }, [data]);
 
   const handleFilterChange = (key: string, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
-    setPagination((prev) => ({ ...prev, page: 1 })); // Reset to first page
+
+    // Reset to first page when filters change that could significantly change results
+    // For search, we don't immediately reset since it's debounced
+    if (key !== "search") {
+      setPagination((prev) => ({ ...prev, page: 1 }));
+    }
   };
+
+  // Reset to page 1 when search actually changes (after debounce)
+  const prevSearchRef = useRef(filters.search);
+  useEffect(() => {
+    // Only reset page if search term actually changed and it's not the initial load
+    if (
+      prevSearchRef.current !== filters.search &&
+      prevSearchRef.current !== ""
+    ) {
+      setPagination((prev) => ({ ...prev, page: 1 }));
+    }
+    prevSearchRef.current = filters.search;
+  }, [filters.search]);
 
   const handlePageChange = (page: number) => {
     setPagination((prev) => ({ ...prev, page }));
@@ -77,7 +100,7 @@ export default function AdminAssetsPage() {
     router.push(`/admin/assets/${assetId}`);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
@@ -104,6 +127,7 @@ export default function AdminAssetsPage() {
             assets={assets}
             pagination={pagination}
             onAssetClick={handleAssetClick}
+            isLoading={isFetching}
           />
 
           <AssetsPagination

@@ -1,9 +1,19 @@
+import { useState, useEffect, memo } from "react";
 import type { AssetsFiltersProps } from "../types";
 
-export default function AssetsFilters({
-  filters,
-  onFilterChange,
-}: AssetsFiltersProps) {
+function AssetsFilters({ filters, onFilterChange }: AssetsFiltersProps) {
+  const [searchInput, setSearchInput] = useState(filters.search);
+
+  // Update search input when filters change (e.g., from URL params)
+  useEffect(() => {
+    setSearchInput(filters.search);
+  }, [filters.search]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchInput(value);
+    onFilterChange("search", value);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow p-6 mb-6">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -14,14 +24,21 @@ export default function AssetsFilters({
           >
             Search (symbol, name, ID)
           </label>
-          <input
-            id="search-input"
-            type="text"
-            value={filters.search}
-            onChange={(e) => onFilterChange("search", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Search assets..."
-          />
+          <div className="relative">
+            <input
+              id="search-input"
+              type="text"
+              value={searchInput}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Search assets..."
+            />
+            {searchInput !== filters.search && (
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              </div>
+            )}
+          </div>
         </div>
         <div>
           <label
@@ -104,3 +121,6 @@ export default function AssetsFilters({
     </div>
   );
 }
+
+// Memoize the component to prevent unnecessary re-renders
+export default memo(AssetsFilters);

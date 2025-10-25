@@ -1,7 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { getApps, initializeApp } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
+import { getFirebaseUser, updateFirebaseUser } from "@/lib/firebase/admin";
 import {
   getUser,
   updateOnboardingStep,
@@ -14,8 +13,6 @@ import type {
   UserWallet,
 } from "@/types/onboarding";
 import { verifyAdminAccess } from "@/lib/adminMiddleware";
-import * as admin from "firebase-admin";
-import serviceAccount from "@/solace-market-test-firebase-adminsdk-fbsvc-8963049c79.json";
 
 // Get detailed user information
 export async function GET(
@@ -32,16 +29,6 @@ export async function GET(
     }
 
     // Initialize Firebase Admin for additional operations
-    const apps = getApps();
-    const adminApp =
-      apps.length > 0
-        ? apps[0]
-        : initializeApp({
-            credential: admin.credential.cert(
-              serviceAccount as admin.ServiceAccount,
-            ),
-          });
-
     const { uid } = await params;
 
     // Get user from Turso
@@ -56,7 +43,7 @@ export async function GET(
     // Get Firebase user record for additional details
     let firebaseUser = null;
     try {
-      firebaseUser = await getAuth(adminApp).getUser(uid);
+      firebaseUser = await getFirebaseUser(uid);
     } catch (error) {
       console.error("Error fetching Firebase user:", error);
     }
@@ -78,11 +65,13 @@ export async function GET(
               lastSignInTime: firebaseUser.metadata.lastSignInTime,
               lastRefreshTime: firebaseUser.metadata.lastRefreshTime,
             },
-            providerData: firebaseUser.providerData.map((p) => ({
-              uid: p.uid,
-              email: p.email,
-              providerId: p.providerId,
-            })),
+            providerData: firebaseUser.providerData.map(
+              (p: { uid: string; email?: string; providerId: string }) => ({
+                uid: p.uid,
+                email: p.email,
+                providerId: p.providerId,
+              }),
+            ),
             customClaims: firebaseUser.customClaims,
           }
         : null,
@@ -123,16 +112,6 @@ export async function PATCH(
     }
 
     // Initialize Firebase Admin for additional operations
-    const apps = getApps();
-    const adminApp =
-      apps.length > 0
-        ? apps[0]
-        : initializeApp({
-            credential: admin.credential.cert(
-              serviceAccount as admin.ServiceAccount,
-            ),
-          });
-
     const { uid } = await params;
     const body = await request.json();
 
@@ -172,7 +151,7 @@ export async function PATCH(
       case "updateFirebaseUser":
         // Update Firebase user record
         try {
-          await getAuth(adminApp).updateUser(uid, data);
+          await updateFirebaseUser(uid, data);
         } catch (error) {
           console.error("Error updating Firebase user:", error);
           throw new Error("Failed to update Firebase user");

@@ -1,11 +1,13 @@
 "use client";
 
+import { AssetPageAdminSection } from "@/components/admin/AssetPageAdminSection";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/InitializeFirebase";
 import type { User as FirebaseUser } from "firebase/auth";
 import { useAssetDetails } from "../hooks/useAssetDetails";
+import { assetDetailsToAsset } from "@/utils/assetAdapters";
 import {
   AssetHeader,
   AssetBasicInfo,
@@ -81,6 +83,9 @@ export default function AdminAssetDetailsPage() {
             <AssetBasicInfo asset={asset} />
             <AssetTradingInfo asset={asset} />
             <AssetMarginInfo asset={asset} />
+
+            {/* Admin Trading Section - Only visible to admins */}
+            <AssetPageAdminSection asset={assetDetailsToAsset(asset)} />
           </div>
 
           {/* Sidebar */}
