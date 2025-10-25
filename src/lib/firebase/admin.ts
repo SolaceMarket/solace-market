@@ -5,9 +5,9 @@
  * Following best practices for singleton pattern and secure credential handling
  */
 
-import { getApps, initializeApp, type App } from "firebase-admin/app";
-import { getAuth, type Auth } from "firebase-admin/auth";
 import * as admin from "firebase-admin";
+import { type App, getApps, initializeApp } from "firebase-admin/app";
+import { type Auth, getAuth } from "firebase-admin/auth";
 
 /**
  * Firebase Admin app singleton
@@ -49,20 +49,7 @@ export function initializeFirebaseAdmin(): App {
   }
 
   try {
-    const serviceAccount = JSON.parse(
-      serviceAccountString,
-    ) as admin.ServiceAccount;
-
-    // Validate required service account fields
-    if (
-      !serviceAccount.projectId ||
-      !serviceAccount.privateKey ||
-      !serviceAccount.clientEmail
-    ) {
-      throw new Error(
-        "Invalid service account: missing required fields (projectId, privateKey, or clientEmail)",
-      );
-    }
+    const serviceAccount = JSON.parse(serviceAccountString);
 
     // adminApp = initializeApp({
     //   credential: cert({
@@ -72,14 +59,14 @@ export function initializeFirebaseAdmin(): App {
     //   }),
     // });
 
-    // Initialize Firebase Admin
-    adminAppInstance = initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-    });
+    const credential = admin.credential.cert(serviceAccount);
 
-    console.log(
-      `Firebase Admin initialized for project: ${serviceAccount.projectId}`,
-    );
+    // Initialize Firebase Admin
+    adminAppInstance = initializeApp({ credential });
+
+    // console.log(
+    //   `Firebase Admin initialized for project: ${serviceAccount.projectId}`,
+    // );
     return adminAppInstance;
   } catch (parseError) {
     throw new Error(

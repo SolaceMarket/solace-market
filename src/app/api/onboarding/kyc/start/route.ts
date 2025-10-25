@@ -82,8 +82,37 @@ export async function POST(request: NextRequest) {
     const kycData: UserKYC = {
       provider: "mock",
       status: kycResult.status,
+      level: "basic", // Start with basic level for mock
+      riskLevel: "low", // Default to low risk for demo
       lastCheckedAt: now,
       submittedAt: now,
+      checks: {
+        // Initialize basic checks for mock verification
+        identity: {
+          type: "identity_verification",
+          status: kycResult.status,
+          checkedAt: now,
+          score: kycResult.status === "approved" ? 95 : 75,
+          details: "Mock identity verification",
+          provider: "mock",
+        },
+        address: {
+          type: "address_verification",
+          status: kycResult.status,
+          checkedAt: now,
+          score: kycResult.status === "approved" ? 90 : 70,
+          details: "Mock address verification",
+          provider: "mock",
+        },
+        sanctions: {
+          type: "sanctions_screening",
+          status: kycResult.status === "approved" ? "approved" : "pending",
+          checkedAt: now,
+          score: 100, // Clean sanctions record for demo
+          details: "No sanctions matches found",
+          provider: "mock",
+        },
+      },
     };
 
     // If approved immediately, add approval timestamp

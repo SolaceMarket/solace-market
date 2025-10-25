@@ -1,6 +1,5 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { initializeFirebaseAdmin } from "@/lib/firebase/admin";
 import { requireAuth } from "@/lib/authMiddleware";
 import { createUser, getUser } from "@/lib/tursoUsers";
 import type {
@@ -8,9 +7,6 @@ import type {
   InitOnboardingResponse,
   Locale,
 } from "@/types/onboarding";
-
-// Initialize Firebase Admin if not already initialized
-initializeFirebaseAdmin();
 
 export async function POST(request: NextRequest) {
   try {

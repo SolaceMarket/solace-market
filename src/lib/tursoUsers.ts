@@ -136,11 +136,17 @@ function rowToUser(row: UserRow): User {
         kyc: {
           provider: row.kyc_provider as "mock", // Safe cast since only mock is implemented
           status: row.kyc_status as KYCStatus, // Type assertion for KYC status
+          level: "basic", // Default level for existing records
+          riskLevel: "low", // Default risk level for existing records
           lastCheckedAt: row.kyc_last_checked_at,
           submittedAt: row.kyc_submitted_at || undefined,
           approvedAt: row.kyc_approved_at || undefined,
           rejectedAt: row.kyc_rejected_at || undefined,
           rejectionReason: row.kyc_rejection_reason || undefined,
+          checks: {
+            // Default empty checks for existing records
+            // These would be populated by actual KYC data in a real implementation
+          },
         },
       }),
     ...(row.wallet_chain &&

@@ -45,7 +45,17 @@ export function AssetsTable({ assets }: AssetsTableProps) {
               <td>{asset.shortable}</td>
               <td>{asset.easy_to_borrow}</td>
               <td>{asset.fractionable}</td>
-              <td>{JSON.stringify(asset.attributes)}</td>
+              <td>
+                {[
+                  asset.ptp_no_exception && "PTP_NO_EX",
+                  asset.ptp_with_exception && "PTP_WITH_EX",
+                  asset.ipo && "IPO",
+                  asset.has_options && "OPTIONS",
+                  asset.options_late_close && "LATE_CLOSE",
+                ]
+                  .filter(Boolean)
+                  .join(", ") || "None"}
+              </td>
             </tr>
           ))}
         </tbody>

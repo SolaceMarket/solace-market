@@ -7,7 +7,7 @@ import { auth } from "@/firebase/InitializeFirebase";
 import type { User as FirebaseUser } from "firebase/auth";
 import type { Pagination, AssetFilters } from "./types";
 import { useAssets } from "./hooks/useAssets";
-import { useUrlSync } from "./hooks/useUrlSync";
+// import { useUrlSync } from "./hooks/useUrlSync"; // TODO: Implement Suspense boundary
 import {
   AssetsPageHeader,
   AssetsFilters,
@@ -33,12 +33,13 @@ export default function AdminAssetsPage() {
   });
 
   // Synchronize state with URL parameters
-  useUrlSync({
-    filters,
-    pagination,
-    onFiltersChange: setFilters,
-    onPaginationChange: setPagination,
-  });
+  // TODO: Implement proper Suspense boundary for useSearchParams
+  // useUrlSync({
+  //   filters,
+  //   pagination,
+  //   onFiltersChange: setFilters,
+  //   onPaginationChange: setPagination,
+  // });
 
   // Authentication check
   useEffect(() => {

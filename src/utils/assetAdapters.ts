@@ -37,6 +37,14 @@ export function assetDetailsToAsset(assetDetails: AssetDetails): Asset {
     shortable: assetDetails.shortable ?? false,
     easy_to_borrow: assetDetails.easyToBorrow ?? false,
     fractionable: assetDetails.fractionable ?? false,
-    attributes: assetDetails.attributes ? [assetDetails.attributes] : [],
+    // Individual boolean attribute flags
+    ptp_no_exception: false, // Default values for missing data
+    ptp_with_exception: false,
+    ipo: false,
+    has_options: false,
+    options_late_close: false,
+    // Timestamp fields
+    created_at: assetDetails.createdAt,
+    updated_at: assetDetails.updatedAt,
   };
 }
