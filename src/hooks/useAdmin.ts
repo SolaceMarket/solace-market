@@ -6,6 +6,7 @@ import type {
   Pagination,
   UserFilters,
 } from "@/types/admin";
+import { AlpacaAccount } from "@/alpaca/accounts/Account";
 
 export function useUsers(firebaseUser: FirebaseUser | null) {
   const [users, setUsers] = useState<AdminUser[]>([]);
@@ -85,7 +86,7 @@ export function useUsers(firebaseUser: FirebaseUser | null) {
 }
 
 export function useAlpacaAccounts(firebaseUser: FirebaseUser | null) {
-  const [alpacaAccounts, setAlpacaAccounts] = useState<AlpacaAccountInfo[]>([]);
+  const [alpacaAccounts, setAlpacaAccounts] = useState<AlpacaAccount[]>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchAlpacaAccounts = useCallback(

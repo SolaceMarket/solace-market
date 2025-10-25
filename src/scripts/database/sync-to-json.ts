@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { join } from "node:path";
-import type { Account } from "@/alpaca/accounts/Account";
+import type { AlpacaAccount } from "@/alpaca/accounts/Account";
 import { getAccountById } from "@/alpaca/accounts/getAccountById";
 import { getAccounts } from "@/alpaca/accounts/getAccounts";
 import { getAssets } from "@/alpaca/assets/getAssets";
@@ -63,7 +63,7 @@ export const saveAccountsToJson = async () => {
   return accounts;
 };
 
-export const saveDetailedAccountsToJson = async (accounts: Account[]) => {
+export const saveDetailedAccountsToJson = async (accounts: AlpacaAccount[]) => {
   for (const account of accounts) {
     const detailedAccount = await getAccountById(account.id);
 

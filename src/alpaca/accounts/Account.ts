@@ -1,27 +1,31 @@
-// Full Alpaca Account structure based on API response
+// Basic Alpaca Account structure (from accounts.json)
 export interface AlpacaAccount {
   id: string;
   account_number: string;
-  status: "ACTIVE" | "INACTIVE" | "PENDING" | "CLOSED";
-  crypto_status: "ACTIVE" | "INACTIVE" | "PENDING";
+  status: "ACTIVE" | "INACTIVE" | "PENDING" | "CLOSED" | "ACCOUNT_CLOSED";
+  crypto_status: "ACTIVE" | "INACTIVE" | "PENDING" | "ACCOUNT_CLOSED";
   kyc_results: KYCResults;
   currency: string;
   last_equity: string;
   created_at: string;
+  account_type: string;
+  trading_type: string;
+  enabled_assets: string[];
+  investment_objective: string;
+  investment_time_horizon: string;
+  risk_tolerance: string;
+  liquidity_needs: string;
+}
+
+// Detailed Alpaca Account structure with all fields (from detailed account endpoint)
+export interface AlpacaAccountDetailed extends AlpacaAccount {
   contact: Contact;
   identity: Identity;
   disclosures: Disclosures;
   agreements: Agreement[];
   documents: Document[];
   trusted_contact: TrustedContact;
-  account_type: string;
-  trading_type: string;
   trading_configurations: unknown | null;
-  enabled_assets: string[];
-  investment_objective: string;
-  investment_time_horizon: string;
-  risk_tolerance: string;
-  liquidity_needs: string;
 }
 
 export interface KYCResults {
