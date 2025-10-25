@@ -16,6 +16,76 @@ export interface UserData {
   };
 }
 
+export interface AdminUser {
+  uid: string;
+  email: string;
+  createdAt: string;
+  locale: string;
+  jurisdiction: string;
+  onboarding: {
+    currentStep: string;
+    completed: boolean;
+    completedAt?: string;
+    lastActivityAt: string;
+  };
+  profile?: {
+    firstName: string;
+    lastName: string;
+    country: string;
+  };
+  wallet?: {
+    chain: string;
+    publicKey: string;
+    verifiedAt: string;
+  };
+  kyc?: {
+    provider: string;
+    status: string;
+    lastCheckedAt: string;
+  };
+  broker?: {
+    provider: string;
+    subAccountId: string;
+    status: string;
+  };
+}
+
+export interface AlpacaAccountInfo {
+  alpacaAccount: {
+    id: string;
+    accountNumber: string;
+    status: string;
+    cryptoStatus: string;
+    kycSummary: string;
+    currency: string;
+    lastEquity: string;
+    createdAt: string;
+    userId: string | null;
+  };
+  user: {
+    uid: string;
+    email: string;
+  } | null;
+  contact: {
+    emailAddress: string;
+    phoneNumber: string;
+    city: string;
+    state: string;
+    country: string;
+  } | null;
+  identity: {
+    givenName: string;
+    familyName: string;
+    dateOfBirth: string;
+  } | null;
+}
+
+export interface UserFilters {
+  search: string;
+  status: string;
+  jurisdiction: string;
+}
+
 export interface TradeFormData {
   side: "buy" | "sell";
   type: "market" | "limit" | "stop" | "stop_limit";
@@ -50,10 +120,12 @@ export interface TradeResponse {
 
 export interface UsersResponse {
   users: UserData[];
-  pagination: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPages: number;
-  };
+  pagination: Pagination;
+}
+
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
 }
