@@ -14,6 +14,9 @@
     "db:sync:from:json": "bun ./src/scripts/database/sync-from-json.ts",
     "db:create": "bun ./src/scripts/database/create.ts",
     "db:reset": "rm -f local.db && bun run 'db:generate' && bun run 'db:create' && bun run 'db:sync:from:json'",
+    "chain:help": "surfpool start --help",
+    "chain:start": "surfpool start",
+    "chain:studio": "open http://127.0.0.1:8899",
     "create-accounts": "bun ./src/scripts/create-accounts.ts",
     "meta": "bun ./src/scripts/meta.ts",
     "dev": "next dev --turbopack",
@@ -34,6 +37,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
+    "@solana/kit": "^5.0.0",
     "@tanstack/react-query": "^5.90.5",
     "@web3auth/modal": "^10.4.0",
     "drizzle-orm": "^0.44.6",
