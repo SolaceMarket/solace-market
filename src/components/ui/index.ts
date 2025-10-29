@@ -6,7 +6,7 @@ export { IlluminationBackground } from "./IlluminationBackground";
 export { PageHeader } from "./PageHeader";
 export { SwapInterface } from "./SwapInterface";
 // Shared utilities
-export { getAssetLogo } from "./shared/AssetLogo";
+export { AssetLogo, getAssetLogo } from "./shared/AssetLogo";
 export { CollateralAssetSearch } from "./shared/CollateralAssetSearch";
 export { TabBar } from "./TabBar";
 export { TradingInterface } from "./TradingInterface";

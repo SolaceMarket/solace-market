@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useCollateralAssets } from "@/hooks/useCollateralAssets";
 import type { AssetData } from "@/types/assets";
 import { PortfolioCollateralSearchModal } from "../PortfolioCollateralSearchModal";
-import { getAssetLogo } from "../shared/AssetLogo";
+import { AssetLogo } from "../shared/AssetLogo";
 
 interface CollateralAsset {
   id: string;
@@ -172,7 +172,11 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                    {getAssetLogo(selectedCollateralAsset.logo)}
+                    <AssetLogo
+                      src={selectedCollateralAsset.logo}
+                      alt={`${selectedCollateralAsset.symbol} logo`}
+                      className="w-6 h-6"
+                    />
                   </div>
                   <div className="text-left">
                     <div className="flex items-center space-x-2">
@@ -363,7 +367,7 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
             <div className="bg-slate-700 rounded-lg p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  {getAssetLogo(allAssets[sourceAsset]?.logo || "solana")}
+                  <AssetLogo src={allAssets[sourceAsset]?.logo || "/logos/solana.svg"} alt={`${sourceAsset} logo`} className="w-6 h-6" />
                 </div>
                 <span className="text-white font-semibold">{sourceAsset}</span>
               </div>
@@ -390,7 +394,11 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
             <div className="bg-slate-700 rounded-lg p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                  {getAssetLogo(asset.logo)}
+                  <AssetLogo
+                    src={asset.logo}
+                    alt={`${asset.symbol} logo`}
+                    className="w-6 h-6"
+                  />
                 </div>
                 <span className="text-white font-semibold">{asset.symbol}</span>
               </div>

@@ -123,7 +123,7 @@ export function AssetFilterModal({
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center p-4">
       <div
         ref={modalRef}
-        className="bg-slate-800 rounded-lg shadow-xl w-full max-w-md mt-16 max-h-[80vh] overflow-y-auto"
+        className="bg-slate-800 rounded-lg shadow-xl w-full max-w-md mt-2 overflow-y-auto"
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-slate-700">

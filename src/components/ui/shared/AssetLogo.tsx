@@ -1,5 +1,43 @@
 import Image from "next/image";
 
+interface AssetLogoProps {
+  src: string | null;
+  alt: string;
+  width?: number;
+  height?: number;
+  className?: string;
+}
+
+export function AssetLogo({
+  src,
+  alt,
+  width = 24,
+  height = 24,
+  className = "w-6 h-6",
+}: AssetLogoProps) {
+  if (!src) {
+    // Fallback for assets without logos
+    return (
+      <div
+        className={`bg-gray-500 rounded-full flex items-center justify-center text-white text-xs font-bold ${className}`}
+      >
+        {alt.charAt(0).toUpperCase()}
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      className={className}
+    />
+  );
+}
+
+// Keep the old function for backward compatibility during migration
 export function getAssetLogo(
   logoType: string,
   width: number = 24,

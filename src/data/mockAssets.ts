@@ -8,7 +8,7 @@ export interface ApiAsset {
   change: string;
   changePercent: string;
   isPositive: boolean;
-  logo: string;
+  logo: string | null;
   category: "Stock" | "Crypto";
   market: string;
   description: string;
@@ -21,7 +21,7 @@ export interface ListAsset {
   price: string;
   change: string;
   isPositive: boolean;
-  logo: string;
+  logo: string | null;
   category: "Stock" | "Crypto";
 }
 
@@ -36,7 +36,7 @@ const baseAssets = [
     change: "+2.30",
     changePercent: "+1.34%",
     isPositive: true,
-    logo: "apple",
+    logo: "/logos/apple.svg",
     category: "Stock" as const,
     market: "NASDAQ",
     description:
@@ -51,7 +51,7 @@ const baseAssets = [
     change: "+1.24",
     changePercent: "+1.60%",
     isPositive: true,
-    logo: "google",
+    logo: "/logos/google.svg",
     category: "Stock" as const,
     market: "NASDAQ",
     description:
@@ -66,7 +66,7 @@ const baseAssets = [
     change: "+5.80",
     changePercent: "+1.42%",
     isPositive: true,
-    logo: "microsoft",
+    logo: "/logos/microsoft.svg",
     category: "Stock" as const,
     market: "NASDAQ",
     description:
@@ -81,7 +81,7 @@ const baseAssets = [
     change: "+1250.00",
     changePercent: "+1.95%",
     isPositive: true,
-    logo: "bitcoin",
+    logo: "/logos/bitcoin.svg",
     category: "Crypto" as const,
     market: "Crypto",
     description:
@@ -96,7 +96,7 @@ const baseAssets = [
     change: "+8.45",
     changePercent: "+4.51%",
     isPositive: true,
-    logo: "solana",
+    logo: "/logos/solana.svg",
     category: "Crypto" as const,
     market: "Crypto",
     description:
@@ -111,7 +111,7 @@ const baseAssets = [
     change: "-3.45",
     changePercent: "-1.37%",
     isPositive: false,
-    logo: "tesla",
+    logo: null, // No logo file available, will use fallback
     category: "Stock" as const,
     market: "NASDAQ",
     description:
@@ -126,7 +126,7 @@ const baseAssets = [
     change: "+85.20",
     changePercent: "+3.32%",
     isPositive: true,
-    logo: "ethereum",
+    logo: null, // No logo file available, will use fallback
     category: "Crypto" as const,
     market: "Crypto",
     description:

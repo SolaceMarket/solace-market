@@ -2,7 +2,7 @@
 
 import { ChevronDown, Search } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getAssetLogo } from "../shared/AssetLogo";
+import { AssetLogo } from "../shared/AssetLogo";
 
 interface CollateralAsset {
   symbol: string;
@@ -139,7 +139,11 @@ export function CollateralAssetSearch({
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                {getAssetLogo(selectedAssetData.logo)}
+                <AssetLogo
+                  src={selectedAssetData.logo}
+                  alt={`${selectedAssetData.symbol} logo`}
+                  className="w-6 h-6"
+                />
               </div>
               <div>
                 <div className="text-white font-semibold">
@@ -212,7 +216,11 @@ export function CollateralAssetSearch({
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                        {getAssetLogo(asset.logo)}
+                        <AssetLogo
+                          src={asset.logo}
+                          alt={`${asset.symbol} logo`}
+                          className="w-6 h-6"
+                        />
                       </div>
                       <div>
                         <div className="text-white font-semibold">

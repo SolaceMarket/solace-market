@@ -219,7 +219,7 @@ export function LeverageVisualizer({
       <div className="flex items-center justify-between">
         <h4 className="text-lg font-semibold text-white flex items-center space-x-2">
           <TrendingUp className="w-5 h-5" />
-          <span>Leverage Visualizer</span>
+          <span>Leverage</span>
         </h4>
         <div
           className={`px-3 py-1 rounded-full text-sm font-medium ${risk.color} bg-slate-600`}

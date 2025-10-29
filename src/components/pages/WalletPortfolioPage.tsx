@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { AssetLogo } from "@/components/ui/shared/AssetLogo";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
 
 // Mock portfolio data
@@ -35,37 +35,6 @@ const mockPortfolioData = {
     },
   ],
 };
-
-function getAssetLogo(logoType: string) {
-  switch (logoType) {
-    case "apple":
-      return (
-        <Image
-          src="/logos/apple.svg"
-          alt="Apple Logo"
-          width={32}
-          height={32}
-          className="w-8 h-8"
-        />
-      );
-    case "bitcoin":
-      return (
-        <Image
-          src="/logos/bitcoin.svg"
-          alt="Bitcoin Logo"
-          width={32}
-          height={32}
-          className="w-8 h-8"
-        />
-      );
-    default:
-      return (
-        <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-          ?
-        </div>
-      );
-  }
-}
 
 export function WalletPortfolioPage() {
   const router = useRouter();
@@ -109,7 +78,11 @@ export function WalletPortfolioPage() {
             <div className="flex items-center space-x-4">
               {/* Logo */}
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                {getAssetLogo(holding.logo)}
+                <AssetLogo
+                  src={holding.logo}
+                  alt={`${holding.symbol} logo`}
+                  className="w-8 h-8"
+                />
               </div>
 
               {/* Asset Info */}

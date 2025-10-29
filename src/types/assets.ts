@@ -6,6 +6,6 @@ export interface AssetData {
   price: string;
   change: string;
   isPositive: boolean;
-  logo: string;
+  logo: string | null;
   description: string;
 }

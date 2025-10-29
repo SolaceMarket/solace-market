@@ -4,7 +4,7 @@ import { AlertTriangle } from "lucide-react";
 import { useState } from "react";
 import { getSwapAssets } from "@/data/mockAssets";
 import type { AssetData } from "@/types/assets";
-import { getAssetLogo } from "../shared/AssetLogo";
+import { AssetLogo } from "../shared/AssetLogo";
 import { LeverageVisualizer } from "./LeverageVisualizer";
 
 interface LeverageTabProps {
@@ -160,7 +160,11 @@ export function LeverageTab({ asset, onTradeComplete }: LeverageTabProps) {
         <div className="bg-slate-700 rounded-lg p-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              {getAssetLogo(asset.logo)}
+              <AssetLogo
+                src={asset.logo}
+                alt={`${asset.symbol} logo`}
+                className="w-6 h-6"
+              />
             </div>
             <span className="text-white font-semibold">{asset.symbol}</span>
           </div>
@@ -183,7 +187,11 @@ export function LeverageTab({ asset, onTradeComplete }: LeverageTabProps) {
         <div className="bg-slate-700 rounded-lg p-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              {getAssetLogo(allAssets[collateralAsset]?.logo || "solana")}
+              <AssetLogo
+                src={allAssets[collateralAsset]?.logo || "/logos/solana.svg"}
+                alt={`${collateralAsset} logo`}
+                className="w-6 h-6"
+              />
             </div>
             <span className="text-white font-semibold">{collateralAsset}</span>
           </div>
