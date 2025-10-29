@@ -1,6 +1,9 @@
 // UI Components with illumination and glow effects
 
+export { AssetFilterModal } from "./AssetFilterModal";
 export { AssetInfoHeader } from "./AssetInfoHeader";
+// Filter components
+export * from "./filters";
 export { GlowEffect } from "./GlowEffect";
 export { IlluminationBackground } from "./IlluminationBackground";
 export { PageHeader } from "./PageHeader";
