@@ -15,7 +15,7 @@ export function HeroSection() {
         {/* Logo above brand name with subtle glow */}
         <div className="mb-4">
           <GlowEffect variant="logo" glowColor="emerald" intensity="subtle">
-            <SolaceLogo size={64} className="mx-auto mb-3" />
+            <SolaceLogo size={64} className="mx-auto mb-3 md:w-20 md:h-20" />
           </GlowEffect>
           <GlowEffect variant="text" glowColor="emerald">
             <h1 className="text-3xl md:text-4xl font-bold text-white">
