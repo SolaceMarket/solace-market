@@ -56,12 +56,21 @@ export function IlluminationBackground({
         size: "w-2 h-2",
         color: "bg-emerald-400/40",
         duration: "6s",
+        animation: "animate-float-1",
       },
       {
         position: "top-3/4 left-1/3",
         size: "w-1 h-1",
         color: "bg-blue-400/50",
         duration: "4s",
+        animation: "animate-float-2",
+      },
+      {
+        position: "top-1/2 right-1/4",
+        size: "w-1 h-1",
+        color: "bg-purple-400/35",
+        duration: "5.5s",
+        animation: "animate-float-7",
       },
     ];
 
@@ -72,12 +81,28 @@ export function IlluminationBackground({
         size: "w-1.5 h-1.5",
         color: "bg-purple-400/40",
         duration: "5s",
+        animation: "animate-float-3",
       },
       {
         position: "bottom-1/5 left-1/2",
         size: "w-1 h-1",
         color: "bg-emerald-300/30",
         duration: "7s",
+        animation: "animate-float-4",
+      },
+      {
+        position: "top-1/6 right-2/5",
+        size: "w-1 h-1",
+        color: "bg-blue-300/40",
+        duration: "6.8s",
+        animation: "animate-float-8",
+      },
+      {
+        position: "bottom-2/5 left-1/5",
+        size: "w-1.5 h-1.5",
+        color: "bg-emerald-400/35",
+        duration: "8s",
+        animation: "animate-float-9",
       },
     ];
 
@@ -88,12 +113,42 @@ export function IlluminationBackground({
         size: "w-1 h-1",
         color: "bg-blue-300/35",
         duration: "5.5s",
+        animation: "animate-float-5",
       },
       {
         position: "bottom-1/3 left-1/4",
         size: "w-1.5 h-1.5",
         color: "bg-purple-300/25",
         duration: "6.5s",
+        animation: "animate-float-6",
+      },
+      {
+        position: "top-1/8 left-2/5",
+        size: "w-1 h-1",
+        color: "bg-emerald-300/40",
+        duration: "7.2s",
+        animation: "animate-float-10",
+      },
+      {
+        position: "bottom-1/6 right-2/5",
+        size: "w-1 h-1",
+        color: "bg-blue-400/30",
+        duration: "9s",
+        animation: "animate-float-7",
+      },
+      {
+        position: "top-3/5 left-1/6",
+        size: "w-1.5 h-1.5",
+        color: "bg-purple-400/30",
+        duration: "8.5s",
+        animation: "animate-float-8",
+      },
+      {
+        position: "bottom-2/3 right-1/6",
+        size: "w-1 h-1",
+        color: "bg-emerald-400/25",
+        duration: "10s",
+        animation: "animate-float-9",
       },
     ];
 
@@ -147,13 +202,10 @@ export function IlluminationBackground({
         />
 
         {/* Floating particles */}
-        {particles.map((particle, index) => (
+        {particles.map((particle) => (
           <div
             key={`particle-${particle.position}-${particle.color}`}
-            className={`absolute ${particle.position} ${particle.size} ${particle.color} rounded-full animate-pulse`}
-            style={{
-              animation: `pulse ${particle.duration} ease-in-out infinite ${index % 2 === 0 ? "" : "reverse"}`,
-            }}
+            className={`absolute ${particle.position} ${particle.size} ${particle.color} rounded-full ${particle.animation}`}
           />
         ))}
       </div>
