@@ -1,8 +1,9 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
+import { BarChart3, TrendingUp } from "lucide-react";
 import { useState } from "react";
 import type { AssetData } from "@/types/assets";
+import { ChartTab } from "./trading/ChartTab";
 import { LeverageTab } from "./trading/LeverageTab";
 import { SwapTab } from "./trading/SwapTab";
 
@@ -12,14 +13,14 @@ interface TradingInterfaceProps {
   embedded?: boolean;
 }
 
-type TradingMode = "swap" | "leverage";
+type TradingMode = "chart" | "swap" | "leverage";
 
 export function TradingInterface({
   asset,
   onTradeComplete,
   embedded = false,
 }: TradingInterfaceProps) {
-  const [tradingMode, setTradingMode] = useState<TradingMode>("swap");
+  const [tradingMode, setTradingMode] = useState<TradingMode>("chart");
 
   return (
     <div className={!embedded ? "p-6" : ""}>
@@ -31,6 +32,20 @@ export function TradingInterface({
           {/* Trading Mode Tabs */}
           <div className="mb-6">
             <div className="flex bg-slate-700 rounded-lg p-1">
+              <button
+                type="button"
+                onClick={() => setTradingMode("chart")}
+                className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                  tradingMode === "chart"
+                    ? "bg-slate-600 text-white"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                <div className="flex items-center justify-center space-x-1">
+                  <BarChart3 className="w-4 h-4" />
+                  <span>Chart</span>
+                </div>
+              </button>
               <button
                 type="button"
                 onClick={() => setTradingMode("swap")}
@@ -59,16 +74,12 @@ export function TradingInterface({
             </div>
           </div>
 
-          {/* <h3 className="text-xl font-semibold text-white mb-6">
-            {tradingMode === "swap"
-              ? `Swap for ${asset.symbol}`
-              : `Leverage Trade ${asset.symbol}`}
-          </h3> */}
-
           {/* Render appropriate tab component */}
-          {tradingMode === "swap" ? (
+          {tradingMode === "chart" && <ChartTab asset={asset} />}
+          {tradingMode === "swap" && (
             <SwapTab asset={asset} onSwapComplete={onTradeComplete} />
-          ) : (
+          )}
+          {tradingMode === "leverage" && (
             <LeverageTab asset={asset} onTradeComplete={onTradeComplete} />
           )}
         </div>

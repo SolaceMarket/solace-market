@@ -2,6 +2,7 @@
 
 import type { AssetData } from "@/types/assets";
 import { AssetLogo } from "./shared/AssetLogo";
+import { ExpandablePriceDisplay } from "./shared/ExpandablePriceDisplay";
 
 interface AssetInfoHeaderProps {
   asset: AssetData;
@@ -28,20 +29,13 @@ export function AssetInfoHeader({
         </div>
       </div>
 
-      <div className="flex items-center space-x-4 mb-4">
-        <span className="text-3xl font-bold text-white">{asset.price}</span>
-        <span
-          className={`text-lg font-semibold ${
-            asset.isPositive ? "text-green-400" : "text-red-400"
-          }`}
-        >
-          {asset.change}
-        </span>
-      </div>
+      <ExpandablePriceDisplay asset={asset} />
 
-      <p className="text-gray-300 text-sm leading-relaxed">
-        {asset.description}
-      </p>
+      <div className="mt-4">
+        <p className="text-gray-300 text-sm leading-relaxed">
+          {asset.description}
+        </p>
+      </div>
     </div>
   );
 }

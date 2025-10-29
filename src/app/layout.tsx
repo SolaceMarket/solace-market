@@ -25,7 +25,7 @@ export default function RootLayout({
     process.env.DEV_ENABLE_DATABASE_CONSOLE === "true";
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <link
         rel="icon"
         href="/metadata/SolaceMarket-logo_256x256.ico"

@@ -1,12 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { AssetInfoHeader } from "@/components/ui/AssetInfoHeader";
 import { TradingInterface } from "@/components/ui/TradingInterface";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
 import { getSwapAssets } from "@/data/mockAssets";
-import { SwapInterface } from "../ui";
 
 const mockAssets = getSwapAssets();
 
@@ -19,8 +19,13 @@ export function AssetSwapPage({ symbol }: AssetSwapPageProps) {
   const { isConnected, selectedWallet } = useSolana();
 
   // Redirect to onboarding if not connected
+  useEffect(() => {
+    if (!isConnected || !selectedWallet) {
+      router.push("/web3-onboarding");
+    }
+  }, [isConnected, selectedWallet, router]);
+
   if (!isConnected || !selectedWallet) {
-    router.push("/web3-onboarding");
     return null;
   }
 

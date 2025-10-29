@@ -5,52 +5,51 @@
  * hooks, utilities, and types.
  */
 
-// Main hook
-export { useOnboardingState } from "./useOnboardingState";
-
-// API utilities
-export { OnboardingAPI, makeAuthenticatedRequest } from "./onboarding-api";
-
-// Navigation utilities
-export {
-  STEP_ORDER,
-  isStepCompleted,
-  isStepAccessible,
-  getNextStep,
-  getPreviousStep,
-  calculateProgress,
-  getStepTitle,
-  getStepDescription,
-  isOnboardingComplete,
-  getRequiredSteps,
-  getOptionalSteps,
-  isStepRequired,
-  getCurrentStepIndex,
-  getRemainingSteps,
-  estimateTimeRemaining,
-} from "./onboarding-navigation";
-
-// Types
-export type {
-  OnboardingState,
-  OnboardingActions,
-  UseOnboardingStateReturn,
-} from "./onboarding-hook-types";
-
 // Re-export commonly used types from the main types file
 export type {
-  User,
-  OnboardingStep,
-  UserProfile,
-  UserPreferences,
-  KYCData,
+  BrokerSubaccountResponse,
   ConsentResponse,
-  ProfileResponse,
+  KYCData,
   KYCStartResponse,
   KYCStatusResponse,
-  WalletLinkResponse,
-  BrokerSubaccountResponse,
-  SecuritySetupResponse,
+  OnboardingStep,
   PreferencesResponse,
+  ProfileResponse,
+  SecuritySetupResponse,
   UpdateStepResponse,
+  User,
+  UserPreferences,
+  UserProfile,
+  WalletLinkResponse,
 } from "@/types/onboarding";
+// API utilities
+export { makeAuthenticatedRequest, OnboardingAPI } from "./onboarding-api";
+// Types
+export type {
+  OnboardingActions,
+  OnboardingState,
+  UseOnboardingStateReturn,
+} from "./onboarding-hook-types";
+// Navigation utilities
+export {
+  calculateProgress,
+  estimateTimeRemaining,
+  getCurrentStepIndex,
+  getNextStep,
+  getOptionalSteps,
+  getPreviousStep,
+  getRemainingSteps,
+  getRequiredSteps,
+  getStepDescription,
+  getStepTitle,
+  isOnboardingComplete,
+  isStepAccessible,
+  isStepCompleted,
+  isStepRequired,
+  STEP_ORDER,
+} from "./onboarding-navigation";
+// Web3 hooks
+export { useInitialization } from "./useInitialization";
+// Main hook
+export { useOnboardingState } from "./useOnboardingState";
+export { useWalletRedirect } from "./useWalletRedirect";
