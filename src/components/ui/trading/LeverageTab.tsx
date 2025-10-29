@@ -257,7 +257,7 @@ export function LeverageTab({ asset, onTradeComplete }: LeverageTabProps) {
       </div>
 
       {/* Quick Amount Buttons */}
-      <QuickAmountButtons onAmountSelect={setTradeAmount} />
+      {/* <QuickAmountButtons onAmountSelect={setTradeAmount} /> */}
 
       {/* Trade Button */}
       <button

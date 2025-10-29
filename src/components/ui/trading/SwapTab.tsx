@@ -414,8 +414,9 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
               />
             </div>
           </div>
+
           {/* Quick Amount Buttons */}
-          <QuickAmountButtons onAmountSelect={setSwapAmount} />
+          {/* <QuickAmountButtons onAmountSelect={setSwapAmount} /> */}
 
           <button
             type="button"
@@ -427,6 +428,7 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
           </button>
         </>
       )}
+
       {/* Portfolio Collateral Search Modal */}
       <PortfolioCollateralSearchModal
         isOpen={isAssetModalOpen}

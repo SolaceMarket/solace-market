@@ -121,12 +121,12 @@ export function SwapInterface({
         </div>
 
         {/* Amount Input Helper */}
-        <QuickAmountButtons
+        {/* <QuickAmountButtons
           amounts={["1", "5", "10", "25"]}
           onAmountSelect={setSwapAmount}
           label="Quick amounts:"
           className="mb-6"
-        />
+        /> */}
 
         {/* Swap Button */}
         <button
