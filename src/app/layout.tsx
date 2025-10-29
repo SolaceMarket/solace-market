@@ -25,6 +25,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const enableDatabaseConsole =
+    process.env.DEV_ENABLE_DATABASE_CONSOLE === "true";
+
   return (
     <html lang="en">
       <link
@@ -37,7 +40,7 @@ export default function RootLayout({
       >
         <Providers>{children}</Providers>
 
-        {isDev && <DatabaseConsole />}
+        {/* {isDev && enableDatabaseConsole && <DatabaseConsole />} */}
       </body>
     </html>
   );

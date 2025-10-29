@@ -1,0 +1,59 @@
+"use client";
+
+import type { ReactNode } from "react";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { TabBar } from "@/components/ui/TabBar";
+
+interface AppLayoutProps {
+  children: ReactNode;
+  title: string;
+  showBackButton?: boolean;
+  backUrl?: string;
+  showSearch?: boolean;
+  onSearchClick?: () => void;
+  searchTitle?: string;
+  customHeader?: ReactNode;
+  showTabBar?: boolean;
+}
+
+export function AppLayout({
+  children,
+  title,
+  showBackButton = false,
+  backUrl,
+  showSearch = false,
+  onSearchClick,
+  searchTitle,
+  customHeader,
+  showTabBar = true,
+}: AppLayoutProps) {
+  return (
+    <div className="h-screen w-full bg-gradient-to-b from-slate-900 to-slate-800 flex flex-col overflow-hidden">
+      {/* Header - Fixed height */}
+      <div className="h-20 flex-shrink-0 w-full">
+        {customHeader || (
+          <PageHeader
+            title={title}
+            showBackButton={showBackButton}
+            backUrl={backUrl}
+            showSearchButton={showSearch}
+            onSearchClick={onSearchClick}
+            searchTitle={searchTitle}
+          />
+        )}
+      </div>
+
+      {/* Content - Fills remaining space and is scrollable */}
+      <div className="flex-1 w-full overflow-x-hidden overflow-y-auto scrollbar-thin">
+        {children}
+      </div>
+
+      {/* Tab Bar - Fixed height */}
+      {showTabBar && (
+        <div className="h-20 flex-shrink-0 w-full">
+          <TabBar />
+        </div>
+      )}
+    </div>
+  );
+}

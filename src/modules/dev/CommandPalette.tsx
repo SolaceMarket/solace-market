@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
-import { useSettings } from "./settings";
-import { SqlQueryInput, type SqlQueryInputRef } from "./SqlQueryInput";
-import { executeQuery } from "./database-actions";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { QueryResult } from "./database-actions";
+import { executeQuery } from "./database-actions";
 import { queryHistory } from "./queryHistory";
+import { SqlQueryInput, type SqlQueryInputRef } from "./SqlQueryInput";
+import { useSettings } from "./settings";
 
 export interface CommandItem {
   id: string;
@@ -50,12 +50,14 @@ export function CommandPalette({
   // Check if query looks like SQL
   const detectSqlQuery = (text: string) => {
     const trimmed = text.trim().toUpperCase();
-    return trimmed.startsWith("SELECT") || 
-           trimmed.startsWith("INSERT") || 
-           trimmed.startsWith("UPDATE") || 
-           trimmed.startsWith("DELETE") ||
-           trimmed.startsWith("WITH") ||
-           trimmed.startsWith("EXPLAIN");
+    return (
+      trimmed.startsWith("SELECT") ||
+      trimmed.startsWith("INSERT") ||
+      trimmed.startsWith("UPDATE") ||
+      trimmed.startsWith("DELETE") ||
+      trimmed.startsWith("WITH") ||
+      trimmed.startsWith("EXPLAIN")
+    );
   };
 
   // Build command items
@@ -94,7 +96,10 @@ export function CommandPalette({
     recentQueries.forEach((entry) => {
       items.push({
         id: `history-${entry.id}`,
-        title: entry.query.length > 50 ? entry.query.substring(0, 50) + "..." : entry.query,
+        title:
+          entry.query.length > 50
+            ? entry.query.substring(0, 50) + "..."
+            : entry.query,
         subtitle: `Executed ${new Date(entry.timestamp).toLocaleTimeString()} • ${entry.executionTime}ms`,
         category: "History",
         icon: entry.success ? "📋" : "⚠️",
@@ -116,7 +121,10 @@ export function CommandPalette({
     favoriteQueries.forEach((entry) => {
       items.push({
         id: `favorite-${entry.id}`,
-        title: entry.query.length > 50 ? entry.query.substring(0, 50) + "..." : entry.query,
+        title:
+          entry.query.length > 50
+            ? entry.query.substring(0, 50) + "..."
+            : entry.query,
         subtitle: "Favorite query ★",
         category: "History",
         icon: "⭐",
@@ -198,7 +206,7 @@ export function CommandPalette({
           onTabChange("tables");
           onClose();
         },
-      }
+      },
     );
 
     // Settings Categories
@@ -299,7 +307,7 @@ export function CommandPalette({
           });
           onClose();
         },
-      }
+      },
     );
 
     return items;
@@ -313,10 +321,10 @@ export function CommandPalette({
     try {
       const result = await executeQuery(sqlQuery);
       setQueryResult(result);
-      
+
       // Add to query history
       queryHistory.addQuery(sqlQuery, result);
-      
+
       // Don't pass to parent or close palette - keep results in command palette
       // User can manually choose to "Open in Query Tab" if desired
     } catch (error) {
@@ -326,7 +334,7 @@ export function CommandPalette({
         columns: [],
         rowsAffected: 0,
         executionTime: 0,
-        error: (error as Error).message
+        error: (error as Error).message,
       });
     } finally {
       setIsExecuting(false);
@@ -336,13 +344,13 @@ export function CommandPalette({
   // Handle input changes
   const handleInputChange = (value: string) => {
     setQuery(value);
-    
+
     // Switch to SQL mode if query looks like SQL
     const shouldBeQueryMode = detectSqlQuery(value);
     if (shouldBeQueryMode !== isQueryMode) {
       setIsQueryMode(shouldBeQueryMode);
       setQueryResult(null); // Clear previous results
-      
+
       // Focus the new input after mode switch
       if (shouldBeQueryMode) {
         // Small delay to let the SQL input render and focus it
@@ -374,7 +382,9 @@ export function CommandPalette({
         command.subtitle || "",
         command.category,
         ...(command.keywords || []),
-      ].join(" ").toLowerCase();
+      ]
+        .join(" ")
+        .toLowerCase();
 
       return searchText.includes(searchTerm);
     });
@@ -403,14 +413,14 @@ export function CommandPalette({
       switch (e.key) {
         case "ArrowDown":
           e.preventDefault();
-          setSelectedIndex((prev) => 
-            prev < filteredCommands.length - 1 ? prev + 1 : 0
+          setSelectedIndex((prev) =>
+            prev < filteredCommands.length - 1 ? prev + 1 : 0,
           );
           break;
         case "ArrowUp":
           e.preventDefault();
-          setSelectedIndex((prev) => 
-            prev > 0 ? prev - 1 : filteredCommands.length - 1
+          setSelectedIndex((prev) =>
+            prev > 0 ? prev - 1 : filteredCommands.length - 1,
           );
           break;
         case "Enter":
@@ -464,7 +474,9 @@ export function CommandPalette({
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-green-400">🔍</span>
-                <span className="text-sm font-medium text-green-400">SQL Query Mode</span>
+                <span className="text-sm font-medium text-green-400">
+                  SQL Query Mode
+                </span>
                 <button
                   type="button"
                   onClick={() => {
@@ -526,9 +538,10 @@ export function CommandPalette({
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-medium text-white">Query Results</h3>
                     <div className="text-xs text-gray-400">
-                      {queryResult.error 
-                        ? "Error" 
-                        : `${queryResult.rows.length} rows`} • {queryResult.executionTime}ms
+                      {queryResult.error
+                        ? "Error"
+                        : `${queryResult.rows.length} rows`}{" "}
+                      • {queryResult.executionTime}ms
                     </div>
                   </div>
 
@@ -543,7 +556,10 @@ export function CommandPalette({
                           <thead>
                             <tr className="border-b border-gray-600">
                               {queryResult.columns.map((col) => (
-                                <th key={col} className="p-2 text-left text-gray-300 font-medium">
+                                <th
+                                  key={col}
+                                  className="p-2 text-left text-gray-300 font-medium"
+                                >
                                   {col}
                                 </th>
                               ))}
@@ -553,11 +569,18 @@ export function CommandPalette({
                             {queryResult.rows.slice(0, 10).map((row, idx) => {
                               const rowKey = `${idx}-${Object.values(row).slice(0, 2).join("-").slice(0, 15)}`;
                               return (
-                                <tr key={rowKey} className="border-b border-gray-700 hover:bg-gray-700/30">
+                                <tr
+                                  key={rowKey}
+                                  className="border-b border-gray-700 hover:bg-gray-700/30"
+                                >
                                   {queryResult.columns.map((col) => (
-                                    <td key={`${rowKey}-${col}`} className="p-2 text-gray-300">
+                                    <td
+                                      key={`${rowKey}-${col}`}
+                                      className="p-2 text-gray-300"
+                                    >
                                       {String(row[col] ?? "").length > 50
-                                        ? String(row[col]).substring(0, 50) + "..."
+                                        ? String(row[col]).substring(0, 50) +
+                                          "..."
                                         : String(row[col] ?? "")}
                                     </td>
                                   ))}
@@ -611,57 +634,64 @@ export function CommandPalette({
               {!queryResult && !isExecuting && query.trim() && (
                 <div className="text-center py-8 text-gray-400">
                   <div className="text-4xl mb-2">💻</div>
-                  <div className="text-lg font-medium mb-1">Ready to execute</div>
-                  <div className="text-sm">Press Ctrl+Enter to run your SQL query</div>
+                  <div className="text-lg font-medium mb-1">
+                    Ready to execute
+                  </div>
+                  <div className="text-sm">
+                    Press Ctrl+Enter to run your SQL query
+                  </div>
                 </div>
               )}
             </div>
-          ) : (
-            /* Command Search Results */
-            Object.keys(groupedCommands).length === 0 ? (
-              <div className="p-8 text-center text-gray-400">
-                <div className="text-4xl mb-2">🔍</div>
-                <div className="text-lg font-medium mb-1">No results found</div>
-                <div className="text-sm">
-                  Try a different search term or start typing SQL (SELECT, INSERT, UPDATE, DELETE)
-                </div>
+          ) : /* Command Search Results */
+          Object.keys(groupedCommands).length === 0 ? (
+            <div className="p-8 text-center text-gray-400">
+              <div className="text-4xl mb-2">🔍</div>
+              <div className="text-lg font-medium mb-1">No results found</div>
+              <div className="text-sm">
+                Try a different search term or start typing SQL (SELECT, INSERT,
+                UPDATE, DELETE)
               </div>
-            ) : (
-              Object.entries(groupedCommands).map(([category, commands]) => (
-                <div key={category}>
-                  <div className="px-4 py-2 text-xs font-semibold text-gray-400 bg-gray-900/50 border-b border-gray-700">
-                    {category}
-                  </div>
-                  {commands.map((command, commandIndex) => {
-                    const globalIndex = filteredCommands.indexOf(command);
-                    return (
-                      <button
-                        key={command.id}
-                        type="button"
-                        onClick={command.action}
-                        className={`w-full text-left px-4 py-3 border-b border-gray-700/50 transition-colors ${
-                          globalIndex === selectedIndex
-                            ? "bg-green-600/20 text-green-300"
-                            : "hover:bg-gray-700/50 text-gray-300"
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="text-lg flex-shrink-0">{command.icon}</span>
-                          <div className="flex-1 min-w-0">
-                            <div className="font-medium text-sm">{command.title}</div>
-                            {command.subtitle && (
-                              <div className="text-xs opacity-75 mt-0.5">
-                                {command.subtitle}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </button>
-                    );
-                  })}
+            </div>
+          ) : (
+            Object.entries(groupedCommands).map(([category, commands]) => (
+              <div key={category}>
+                <div className="px-4 py-2 text-xs font-semibold text-gray-400 bg-gray-900/50 border-b border-gray-700">
+                  {category}
                 </div>
-              ))
-            )
+                {commands.map((command, commandIndex) => {
+                  const globalIndex = filteredCommands.indexOf(command);
+                  return (
+                    <button
+                      key={command.id}
+                      type="button"
+                      onClick={command.action}
+                      className={`w-full text-left px-4 py-3 border-b border-gray-700/50 transition-colors ${
+                        globalIndex === selectedIndex
+                          ? "bg-green-600/20 text-green-300"
+                          : "hover:bg-gray-700/50 text-gray-300"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg flex-shrink-0">
+                          {command.icon}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-sm">
+                            {command.title}
+                          </div>
+                          {command.subtitle && (
+                            <div className="text-xs opacity-75 mt-0.5">
+                              {command.subtitle}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            ))
           )}
         </div>
 
@@ -682,12 +712,11 @@ export function CommandPalette({
               </div>
             )}
             <div>
-              {isQueryMode 
-                ? queryResult 
+              {isQueryMode
+                ? queryResult
                   ? `${queryResult.rows.length} rows • ${queryResult.executionTime}ms`
                   : "SQL Mode"
-                : `${filteredCommands.length} results`
-              }
+                : `${filteredCommands.length} results`}
             </div>
           </div>
         </div>

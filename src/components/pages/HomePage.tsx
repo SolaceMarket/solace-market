@@ -6,6 +6,7 @@ import { ConnectButton } from "@/web3auth/ConnectButton";
 import { DisconnectButton } from "@/web3auth/DisconnectButton";
 import { UserInfo } from "@/web3auth/UserInfo";
 import { useWeb3AuthLogs } from "@/web3auth/useWeb3AuthLogs";
+import { AssetCardsDemo } from "../demo/AssetCardsDemo";
 import { CreditCardForm, type CreditCardFormData } from "../forms/credit-card";
 import { SolanaTransaction } from "../solana/SolanaTransaction";
 
@@ -19,6 +20,10 @@ export function HomePage() {
 
   return (
     <div className="space-y-8">
+      <section>
+        <AssetCardsDemo />
+      </section>
+
       <section>
         <h1 className="text-3xl font-bold mb-4">Ethereum Wallet</h1>
         <UserInfo />
