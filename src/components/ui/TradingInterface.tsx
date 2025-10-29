@@ -57,11 +57,11 @@ export function TradingInterface({
           </div>
         </div>
 
-        <h3 className="text-xl font-semibold text-white mb-6">
+        {/* <h3 className="text-xl font-semibold text-white mb-6">
           {tradingMode === "swap"
             ? `Swap for ${asset.symbol}`
             : `Leverage Trade ${asset.symbol}`}
-        </h3>
+        </h3> */}
 
         {/* Render appropriate tab component */}
         {tradingMode === "swap" ? (

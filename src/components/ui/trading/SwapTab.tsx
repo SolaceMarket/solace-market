@@ -159,7 +159,8 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
       {/* Pay With (Portfolio Asset Search + Amount) */}
       <div>
         <div className="block text-gray-400 text-sm mb-2">
-          Pay With (From Your Portfolio)
+          {/* Pay With (From Your Portfolio) */}
+          You provide
         </div>
         <div className="bg-slate-700 rounded-lg overflow-hidden">
           {/* Asset Selection Button */}
@@ -378,11 +379,11 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
           </div>
           */}
           {/* Swap Arrow */}
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <div className="bg-slate-600 rounded-full p-2">
               <ArrowUpDown className="w-5 h-5 text-gray-400" />
             </div>
-          </div>
+          </div> */}
           {/* To Asset */}
           <div>
             <label
