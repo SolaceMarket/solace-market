@@ -26,9 +26,64 @@ export function AssetLogo({
     );
   }
 
+  // Handle logo identifiers by converting them to proper paths
+  let logoSrc = src;
+  let useFallback = false;
+
+  if (!src.startsWith("/") && !src.startsWith("http")) {
+    // Convert logo identifiers to proper paths
+    switch (src) {
+      case "apple":
+        logoSrc = "/logos/apple.svg";
+        break;
+      case "bitcoin":
+        logoSrc = "/logos/bitcoin.svg";
+        break;
+      case "microsoft":
+        logoSrc = "/logos/microsoft.svg";
+        break;
+      case "google":
+        logoSrc = "/logos/google.svg";
+        break;
+      case "solana":
+        logoSrc = "/logos/solana.svg";
+        break;
+      case "tesla":
+        // Tesla doesn't have SVG, use fallback
+        useFallback = true;
+        break;
+      case "ethereum":
+        // Ethereum doesn't have SVG, use fallback
+        useFallback = true;
+        break;
+      default:
+        // If it's an unknown identifier, show fallback
+        useFallback = true;
+        break;
+    }
+  }
+
+  // Use fallback for assets without logo files
+  if (useFallback) {
+    const fallbackColors: { [key: string]: string } = {
+      tesla: "bg-red-600",
+      ethereum: "bg-blue-600",
+    };
+
+    const bgColor = fallbackColors[src] || "bg-gray-500";
+
+    return (
+      <div
+        className={`${bgColor} rounded-full flex items-center justify-center text-white text-xs font-bold ${className}`}
+      >
+        {alt.charAt(0).toUpperCase()}
+      </div>
+    );
+  }
+
   return (
     <Image
-      src={src}
+      src={logoSrc}
       alt={alt}
       width={width}
       height={height}
