@@ -8,30 +8,45 @@ const mockPortfolioAssets = {
     usdValue: 2325.5,
     canUseAsCollateral: true,
     collateralRatio: 0.8, // 80% loan-to-value ratio
+    location: "exchange", // wallet | exchange
+    transferTime: null, // null for exchange assets
+    canTransferForTrading: true,
   },
   USDC: {
     balance: 1250.75,
     usdValue: 1250.75,
     canUseAsCollateral: true,
     collateralRatio: 0.95, // 95% loan-to-value ratio
+    location: "exchange",
+    transferTime: null,
+    canTransferForTrading: true,
   },
   BTC: {
     balance: 0.05,
     usdValue: 3200.0,
     canUseAsCollateral: true,
     collateralRatio: 0.75, // 75% loan-to-value ratio
+    location: "wallet", // In user's wallet
+    transferTime: "30-60 minutes", // Bitcoin takes time to confirm
+    canTransferForTrading: false, // Too slow for immediate trading
   },
   ETH: {
     balance: 1.2,
     usdValue: 3600.0,
     canUseAsCollateral: true,
     collateralRatio: 0.8, // 80% loan-to-value ratio
+    location: "wallet",
+    transferTime: "2-5 minutes",
+    canTransferForTrading: true, // Fast enough for trading
   },
   AAPL: {
     balance: 5,
     usdValue: 850.0,
     canUseAsCollateral: false, // Stocks typically can't be used as collateral for crypto
     collateralRatio: 0,
+    location: "exchange",
+    transferTime: null,
+    canTransferForTrading: true,
   },
 };
 
@@ -63,6 +78,9 @@ export async function GET(request: NextRequest) {
         collateralRatio: portfolioData.collateralRatio,
         maxCollateralValue:
           portfolioData.usdValue * portfolioData.collateralRatio,
+        location: portfolioData.location,
+        transferTime: portfolioData.transferTime,
+        canTransferForTrading: portfolioData.canTransferForTrading,
       }))
       .sort((a, b) => b.usdValue - a.usdValue); // Sort by USD value descending
 

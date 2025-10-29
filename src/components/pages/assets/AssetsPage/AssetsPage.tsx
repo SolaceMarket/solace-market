@@ -1,16 +1,16 @@
+import { AssetsSummary } from "@/components/ui/AssetsSummary";
+import { Navigation } from "@/components/ui/Navigation";
+import {
+  type AssetFilters,
+  getAssetsSummary,
+  getFilteredAssets,
+} from "@/data/assetFiltering";
 import {
   getAssetClasses,
   getAssetExchanges,
 } from "@/turso/tables/assets/selectAssets";
-import {
-  getFilteredAssets,
-  getAssetsSummary,
-  type AssetFilters,
-} from "@/data/assetFiltering";
-import { ServerSearchAndFilters } from "../../../ui/ServerSearchAndFilters";
 import { ServerAssetsTable } from "../../../ui/ServerAssetsTable";
-import { AssetsSummary } from "@/components/ui/AssetsSummary";
-import { Navigation } from "@/components/ui/Navigation";
+import { ServerSearchAndFilters } from "../../../ui/ServerSearchAndFilters";
 
 interface AssetsPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -95,7 +95,9 @@ export async function AssetsPage({ searchParams }: AssetsPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Assets</h1>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Available Assets
+            </h1>
             <p className="mt-2 text-lg text-gray-600">
               Discover and analyze securities across multiple exchanges
             </p>
