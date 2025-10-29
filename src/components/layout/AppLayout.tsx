@@ -15,6 +15,11 @@ interface AppLayoutProps {
   showFilterButton?: boolean;
   onFilterClick?: () => void;
   filterTitle?: string;
+  rightAction?: {
+    label: string;
+    onClick: () => void;
+    variant?: "primary" | "secondary" | "danger";
+  };
   customHeader?: ReactNode;
   showTabBar?: boolean;
 }
@@ -30,6 +35,7 @@ export function AppLayout({
   showFilterButton = false,
   onFilterClick,
   filterTitle,
+  rightAction,
   customHeader,
   showTabBar = true,
 }: AppLayoutProps) {
@@ -48,6 +54,7 @@ export function AppLayout({
             showFilterButton={showFilterButton}
             onFilterClick={onFilterClick}
             filterTitle={filterTitle}
+            rightAction={rightAction}
           />
         )}
       </div>

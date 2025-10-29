@@ -26,28 +26,8 @@ export function SettingsPage() {
     }
   };
 
-  const handleGoBack = () => {
-    router.back();
-  };
-
   return (
-    <AppLayout
-      title="Settings"
-      showBackButton={true}
-      customHeader={
-        <div className="h-full flex items-center justify-between p-4 bg-slate-900/90 backdrop-blur border-b border-slate-700/50">
-          <button
-            type="button"
-            onClick={handleGoBack}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            ← Back
-          </button>
-          <h1 className="text-xl font-semibold text-white">Settings</h1>
-          <div className="w-16" /> {/* Spacer for center alignment */}
-        </div>
-      }
-    >
+    <AppLayout title="Settings" showBackButton={true} backUrl="/assets-list">
       <div className="relative w-full">
         {/* Background Effects */}
         <IlluminationBackground glowTheme="emerald" />

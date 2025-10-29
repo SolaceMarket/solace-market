@@ -49,7 +49,7 @@ export function MobileHeader({
 
         {/* Centered Title */}
         <div className="absolute left-0 right-0 flex justify-center pointer-events-none">
-          <h1 className="text-lg font-semibold">{title}</h1>
+          <h1 className="text-2xl font-semibold">{title}</h1>
         </div>
 
         {/* Right Content */}

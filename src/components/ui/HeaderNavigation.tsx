@@ -53,7 +53,7 @@ export function HeaderNavigation({
             )}
 
             <div className="flex-1 text-center">
-              <h1 className="text-xl font-semibold">{title}</h1>
+              <h1 className="text-2xl font-semibold">{title}</h1>
               {subtitle && (
                 <p className="text-sm text-gray-400 mt-1">{subtitle}</p>
               )}

@@ -51,25 +51,11 @@ export function ProfilePage() {
       title="Profile"
       showBackButton={true}
       backUrl="/settings"
-      customHeader={
-        <div className="h-full flex items-center justify-between p-4 bg-slate-900/90 backdrop-blur border-b border-slate-700/50">
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            ← Back
-          </button>
-          <h1 className="text-xl font-semibold text-white">Profile</h1>
-          <button
-            type="button"
-            onClick={() => setIsEditing(!isEditing)}
-            className="text-blue-400 hover:text-blue-300 transition-colors"
-          >
-            {isEditing ? "Cancel" : "Edit"}
-          </button>
-        </div>
-      }
+      rightAction={{
+        label: isEditing ? "Cancel" : "Edit",
+        onClick: () => setIsEditing(!isEditing),
+        variant: "primary",
+      }}
     >
       <div className="relative w-full">
         {/* Background Effects */}
