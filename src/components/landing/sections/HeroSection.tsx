@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Shield, TrendingUp, Wallet } from "lucide-react";
+import { ArrowRight, Coins, TrendingUp, Wallet } from "lucide-react";
 import Link from "next/link";
 import { SolaceLogo } from "@/components/ui/shared/SolaceLogo";
 
@@ -40,21 +40,25 @@ export function HeroSection() {
         {/* Pain point solutions - compact mobile design */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
           <div className="bg-slate-800/40 backdrop-blur-sm border border-teal-500/20 rounded-lg p-4 hover:border-teal-400/40 transition-all duration-300">
-            <Wallet className="w-6 h-6 text-teal-400 mx-auto mb-2" />
+            <TrendingUp className="w-6 h-6 text-teal-400 mx-auto mb-2" />
+            <h3 className="text-sm font-semibold text-white mb-1">
+              Trade Stocks, Bonds,
+            </h3>
+            <p className="text-xs text-gray-400">Commodities & more!</p>
+          </div>
+
+          <div className="bg-slate-800/40 backdrop-blur-sm border border-blue-500/20 rounded-lg p-4 hover:border-blue-400/40 transition-all duration-300">
+            <Wallet className="w-6 h-6 text-blue-400 mx-auto mb-2" />
             <h3 className="text-sm font-semibold text-white mb-1">No KYC</h3>
             <p className="text-xs text-gray-400">Just connect & trade</p>
           </div>
 
-          <div className="bg-slate-800/40 backdrop-blur-sm border border-blue-500/20 rounded-lg p-4 hover:border-blue-400/40 transition-all duration-300">
-            <Shield className="w-6 h-6 text-blue-400 mx-auto mb-2" />
-            <h3 className="text-sm font-semibold text-white mb-1">Private</h3>
-            <p className="text-xs text-gray-400">Your data stays yours</p>
-          </div>
-
           <div className="bg-slate-800/40 backdrop-blur-sm border border-emerald-500/20 rounded-lg p-4 hover:border-emerald-400/40 transition-all duration-300">
-            <TrendingUp className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
-            <h3 className="text-sm font-semibold text-white mb-1">24/7</h3>
-            <p className="text-xs text-gray-400">Always accessible</p>
+            <Coins className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
+            <h3 className="text-sm font-semibold text-white mb-1">
+              Use any asset
+            </h3>
+            <p className="text-xs text-gray-400">as collateral</p>
           </div>
         </div>
 
