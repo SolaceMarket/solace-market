@@ -17,9 +17,9 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        {/* Logo and Brand name on same line */}
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <SolaceLogo size={48} />
+        {/* Logo above brand name */}
+        <div className="mb-4">
+          <SolaceLogo size={64} className="mx-auto mb-3" />
           <h1 className="text-3xl md:text-4xl font-bold text-white">
             Solace.Market
           </h1>
