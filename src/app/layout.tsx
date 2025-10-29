@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { isDev } from "@/lib/dev/devEnv";
 import { DatabaseConsole } from "@/modules/dev/DatabaseConsole";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -35,9 +31,7 @@ export default function RootLayout({
         href="/metadata/SolaceMarket-logo_256x256.ico"
         sizes="any"
       />
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${ibmPlexMono.variable} antialiased font-mono`}>
         <Providers>{children}</Providers>
 
         {/* {isDev && enableDatabaseConsole && <DatabaseConsole />} */}
