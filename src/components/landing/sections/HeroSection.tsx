@@ -30,11 +30,6 @@ export function HeroSection() {
           Trade with Peace of Mind
         </h2>
 
-        {/* Very short subtitle */}
-        <p className="text-base md:text-lg text-gray-300 mb-6 max-w-md mx-auto">
-          Connect your wallet. Trade instantly. Stay private.
-        </p>
-
         {/* Pain point solutions - better space utilization */}
         <div className="space-y-3 mb-8 max-w-sm mx-auto">
           <div className="bg-slate-800/40 backdrop-blur-sm border border-teal-500/20 rounded-lg p-4 hover:border-teal-400/40 transition-all duration-300">
