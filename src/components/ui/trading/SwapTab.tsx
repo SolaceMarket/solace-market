@@ -2,9 +2,19 @@
 
 import { ArrowUpDown } from "lucide-react";
 import { useState } from "react";
-import { getSwapAssets } from "@/data/mockAssets";
 import type { AssetData } from "@/types/assets";
 import { getAssetLogo } from "../shared/AssetLogo";
+import { CollateralAssetSearch } from "../shared/CollateralAssetSearch";
+
+interface CollateralAsset {
+  symbol: string;
+  name: string;
+  logo: string;
+  balance: number;
+  usdValue: number;
+  collateralRatio: number;
+  maxCollateralValue: number;
+}
 
 interface SwapTabProps {
   asset: AssetData;
@@ -14,12 +24,9 @@ interface SwapTabProps {
 export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
   const [swapAmount, setSwapAmount] = useState<string>("1");
   const [sourceAsset, setSourceAsset] = useState<string>("SOL");
+  const [selectedCollateralAsset, setSelectedCollateralAsset] =
+    useState<CollateralAsset | null>(null);
   const [isSwapping, setIsSwapping] = useState(false);
-
-  const allAssets = getSwapAssets();
-  const availableAssets = Object.keys(allAssets).filter(
-    (symbol) => symbol !== asset.symbol,
-  );
 
   const handleSwapAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -29,9 +36,19 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
     }
   };
 
+  const handleCollateralAssetSelect = (collateralAsset: CollateralAsset) => {
+    setSelectedCollateralAsset(collateralAsset);
+    setSourceAsset(collateralAsset.symbol);
+  };
+
   const handleSwap = async () => {
     if (!swapAmount || swapAmount === "0") {
       alert("Please enter a valid amount");
+      return;
+    }
+
+    if (!selectedCollateralAsset) {
+      alert("Please select a collateral asset");
       return;
     }
 
@@ -57,7 +74,40 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
 
   return (
     <div className="space-y-4">
-      {/* From Asset */}
+      {/* SIMPLIFIED VERSION - One Step Payment with Portfolio Assets */}
+      {/* Pay With (Portfolio Asset Search + Amount) */}
+      <div>
+        <div className="block text-gray-400 text-sm mb-2">
+          Pay With (From Your Portfolio)
+        </div>
+        <div className="bg-slate-700 rounded-lg p-4 space-y-3">
+          {/* Collateral Asset Search */}
+          <CollateralAssetSearch
+            selectedAsset={sourceAsset}
+            onAssetSelect={handleCollateralAssetSelect}
+            placeholder="Search your portfolio assets..."
+          />
+
+          {/* Amount Display */}
+          {selectedCollateralAsset && (
+            <div className="flex items-center justify-between bg-slate-600 rounded-lg p-3">
+              <div className="flex items-center space-x-3">
+                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                  {getAssetLogo(selectedCollateralAsset.logo)}
+                </div>
+                <span className="text-white font-medium">Amount to Pay:</span>
+              </div>
+              <span className="text-white text-lg font-semibold">
+                {estimatedCost.toFixed(4)} {selectedCollateralAsset.symbol}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>{" "}
+      {/* 
+      ORIGINAL VERSION - Two Step Payment (Commented Out)
+      Uncomment the section below and comment out the "SIMPLIFIED VERSION" above to use the original two-step approach:
+      
       <div>
         <div className="block text-gray-400 text-sm mb-2">You Pay</div>
         <div className="bg-slate-700 rounded-lg p-4">
@@ -75,7 +125,6 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
         </div>
       </div>
 
-      {/* Cost Display */}
       <div>
         <div className="block text-gray-400 text-sm mb-2">Amount to Pay</div>
         <div className="bg-slate-700 rounded-lg p-4 flex items-center justify-between">
@@ -90,14 +139,13 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
           </span>
         </div>
       </div>
-
+      */}
       {/* Swap Arrow */}
       <div className="flex justify-center">
         <div className="bg-slate-600 rounded-full p-2">
           <ArrowUpDown className="w-5 h-5 text-gray-400" />
         </div>
       </div>
-
       {/* To Asset */}
       <div>
         <label
@@ -123,7 +171,6 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
           />
         </div>
       </div>
-
       {/* Quick Amount Buttons */}
       <div>
         <p className="text-gray-400 text-sm mb-2">Quick amounts:</p>
@@ -140,7 +187,6 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
           ))}
         </div>
       </div>
-
       {/* Swap Button */}
       <button
         type="button"
@@ -150,7 +196,6 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
       >
         {isSwapping ? "Swapping..." : `Swap for ${asset.symbol}`}
       </button>
-
       {/* Transaction Info */}
       <div className="text-xs text-gray-400 space-y-1">
         <div className="flex justify-between">
