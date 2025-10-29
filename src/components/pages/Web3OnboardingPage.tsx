@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { GlowEffect, IlluminationBackground } from "@/components/ui";
+import { SolaceLogo } from "@/components/ui/shared/SolaceLogo";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
 import { WalletConnectButton } from "@/components/web3/solana/wallet-connect-button";
 
@@ -32,13 +32,7 @@ export function Web3OnboardingPage() {
         {/* Logo with subtle glow */}
         <div className="mb-6">
           <GlowEffect variant="logo" glowColor="emerald" intensity="normal">
-            <Image
-              src="/metadata/SolaceMarket-logo_256x256.ico"
-              alt="Solace Market Logo"
-              width={128}
-              height={128}
-              className="mx-auto"
-            />
+            <SolaceLogo size={128} className="mx-auto" />
           </GlowEffect>
         </div>
 
