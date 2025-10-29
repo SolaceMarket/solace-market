@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Filter, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface PageHeaderProps {
@@ -10,6 +10,11 @@ interface PageHeaderProps {
   showSearchButton?: boolean;
   onSearchClick?: () => void;
   searchTitle?: string;
+  showBackText?: boolean;
+  centerTitle?: boolean;
+  showFilterButton?: boolean;
+  onFilterClick?: () => void;
+  filterTitle?: string;
 }
 
 export function PageHeader({
@@ -19,6 +24,11 @@ export function PageHeader({
   showSearchButton = false,
   onSearchClick,
   searchTitle = "Search",
+  showBackText = true,
+  centerTitle = true,
+  showFilterButton = false,
+  onFilterClick,
+  filterTitle = "Filter",
 }: PageHeaderProps) {
   const router = useRouter();
 
@@ -32,32 +42,60 @@ export function PageHeader({
 
   return (
     <div className="h-full bg-slate-900/90 backdrop-blur border-b border-slate-700 px-6 py-4 flex items-center">
-      <div className="flex items-center justify-between w-full">
-        <div className="flex items-center space-x-4">
-          {showBackButton && (
+      <div className="flex items-center justify-between w-full relative">
+        {/* Left Side - Back Button, Filter Button, or Spacer */}
+        <div className="flex items-center space-x-3">
+          {showBackButton ? (
             <button
               type="button"
               onClick={handleBackClick}
-              className="text-gray-400 hover:text-white transition-colors"
+              className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors z-10"
             >
               <ArrowLeft className="w-6 h-6" />
+              {showBackText && (
+                <span className="text-sm font-medium">Back</span>
+              )}
             </button>
+          ) : showFilterButton ? (
+            <button
+              type="button"
+              onClick={onFilterClick}
+              className="text-gray-400 hover:text-white transition-colors z-10"
+              title={filterTitle}
+            >
+              <Filter className="w-6 h-6" />
+            </button>
+          ) : (
+            <div className="w-6" /> // Spacer for alignment
           )}
-          <h1 className="text-2xl font-semibold text-white">{title}</h1>
         </div>
 
-        {showSearchButton && (
-          <div className="flex items-center space-x-4">
+        {/* Centered Title */}
+        {centerTitle ? (
+          <div className="absolute left-0 right-0 flex justify-center pointer-events-none">
+            <h1 className="text-2xl font-semibold text-white">{title}</h1>
+          </div>
+        ) : (
+          <div className={`flex items-center ${showBackButton ? "ml-4" : ""}`}>
+            <h1 className="text-2xl font-semibold text-white">{title}</h1>
+          </div>
+        )}
+
+        {/* Right Side - Search Button or Spacer */}
+        <div className="flex items-center">
+          {showSearchButton ? (
             <button
               type="button"
               onClick={onSearchClick}
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-400 hover:text-white transition-colors z-10"
               title={searchTitle}
             >
               <Search className="w-6 h-6" />
             </button>
-          </div>
-        )}
+          ) : (
+            <div className="w-6" /> // Spacer for alignment
+          )}
+        </div>
       </div>
     </div>
   );

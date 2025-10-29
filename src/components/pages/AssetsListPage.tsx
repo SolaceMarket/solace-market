@@ -4,12 +4,28 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { AssetFilterModal } from "@/components/ui/AssetFilterModal";
 import { AssetSearchModal } from "@/components/ui/AssetSearchModal";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
 import { getListAssets } from "@/data/mockAssets";
 
 // Use centralized mock data
 const mockAssets = getListAssets();
+
+interface FilterOptions {
+  exchange?: string;
+  class?: string;
+  tradable?: boolean;
+  marginable?: boolean;
+  shortable?: boolean;
+  fractionable?: boolean;
+  status?: string;
+}
+
+interface SortOptions {
+  sortBy: "symbol" | "name" | "exchange" | "class";
+  sortOrder: "asc" | "desc";
+}
 
 function getAssetLogo(logoType: string) {
   switch (logoType) {
@@ -92,6 +108,27 @@ export function AssetsListPage() {
   const router = useRouter();
   const { isConnected, selectedWallet } = useSolana();
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+
+  // Mock filter data - in a real app, these would come from an API
+  const mockExchanges = ["NASDAQ", "NYSE", "CRYPTO"];
+  const mockClasses = ["us_equity", "crypto", "forex"];
+
+  // Filter and sort state
+  const [filters, setFilters] = useState<FilterOptions>({});
+  const [sort, setSort] = useState<SortOptions>({
+    sortBy: "symbol",
+    sortOrder: "asc",
+  });
+
+  const handleApplyFilters = (
+    newFilters: FilterOptions,
+    newSort: SortOptions,
+  ) => {
+    setFilters(newFilters);
+    setSort(newSort);
+    // In a real app, this would trigger a data refetch with the new filters
+  };
 
   // Redirect to onboarding if not connected
   if (!isConnected || !selectedWallet) {
@@ -101,10 +138,13 @@ export function AssetsListPage() {
 
   return (
     <AppLayout
-      title="Assets"
+      title="Available Assets"
       showSearch={true}
       onSearchClick={() => setIsSearchModalOpen(true)}
       searchTitle="Search assets"
+      showFilterButton={true}
+      onFilterClick={() => setIsFilterModalOpen(true)}
+      filterTitle="Filter assets"
     >
       {/* Assets List */}
       <div className="p-4 space-y-3">
@@ -152,6 +192,17 @@ export function AssetsListPage() {
       <AssetSearchModal
         isOpen={isSearchModalOpen}
         onClose={() => setIsSearchModalOpen(false)}
+      />
+
+      {/* Asset Filter Modal */}
+      <AssetFilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApplyFilters={handleApplyFilters}
+        exchanges={mockExchanges}
+        classes={mockClasses}
+        currentFilters={filters}
+        currentSort={sort}
       />
     </AppLayout>
   );

@@ -12,6 +12,9 @@ interface AppLayoutProps {
   showSearch?: boolean;
   onSearchClick?: () => void;
   searchTitle?: string;
+  showFilterButton?: boolean;
+  onFilterClick?: () => void;
+  filterTitle?: string;
   customHeader?: ReactNode;
   showTabBar?: boolean;
 }
@@ -24,6 +27,9 @@ export function AppLayout({
   showSearch = false,
   onSearchClick,
   searchTitle,
+  showFilterButton = false,
+  onFilterClick,
+  filterTitle,
   customHeader,
   showTabBar = true,
 }: AppLayoutProps) {
@@ -39,6 +45,9 @@ export function AppLayout({
             showSearchButton={showSearch}
             onSearchClick={onSearchClick}
             searchTitle={searchTitle}
+            showFilterButton={showFilterButton}
+            onFilterClick={onFilterClick}
+            filterTitle={filterTitle}
           />
         )}
       </div>
