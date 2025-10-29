@@ -9,7 +9,7 @@ export { IlluminationBackground } from "./IlluminationBackground";
 export { PageHeader } from "./PageHeader";
 export { SwapInterface } from "./SwapInterface";
 // Shared utilities
-export { AssetLogo, getAssetLogo } from "./shared/AssetLogo";
+export { AssetLogo } from "./shared/AssetLogo";
 export { CollateralAssetSearch } from "./shared/CollateralAssetSearch";
 export { SolaceLogo } from "./shared/SolaceLogo";
 export { TabBar } from "./TabBar";
