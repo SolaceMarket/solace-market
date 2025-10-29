@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, BarChart3, Sliders } from "lucide-react";
 import { useState } from "react";
 import { getSwapAssets } from "@/data/mockAssets";
 import type { AssetData } from "@/types/assets";
@@ -14,6 +14,7 @@ interface LeverageTabProps {
 }
 
 type TradeDirection = "buy" | "sell";
+type LeverageView = "simple" | "advanced";
 
 export function LeverageTab({ asset, onTradeComplete }: LeverageTabProps) {
   const [tradeDirection, setTradeDirection] = useState<TradeDirection>("buy");
@@ -21,6 +22,7 @@ export function LeverageTab({ asset, onTradeComplete }: LeverageTabProps) {
   const [leverage, setLeverage] = useState<number>(2);
   const [collateralAsset, setCollateralAsset] = useState<string>("SOL");
   const [isTrading, setIsTrading] = useState(false);
+  const [leverageView, setLeverageView] = useState<LeverageView>("simple");
 
   const allAssets = getSwapAssets();
   const availableCollateral = Object.keys(allAssets).filter(
@@ -101,36 +103,66 @@ export function LeverageTab({ asset, onTradeComplete }: LeverageTabProps) {
         </div>
       </div>
 
-      {/* Leverage Selection */}
+      {/* Leverage Selection with View Toggle */}
       <div>
-        <div className="block text-gray-400 text-sm mb-2">Leverage</div>
-        <div className="flex space-x-2">
-          {[2, 5, 10, 20].map((lev) => (
+        <div className="flex items-center justify-between mb-2">
+          <div className="block text-gray-400 text-sm">Leverage</div>
+          <div className="flex bg-slate-700 rounded-lg p-1">
             <button
-              key={lev}
               type="button"
-              onClick={() => setLeverage(lev)}
-              className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
-                leverage === lev
+              onClick={() => setLeverageView("simple")}
+              className={`flex items-center gap-1 py-1 px-2 rounded text-xs transition-colors ${
+                leverageView === "simple"
                   ? "bg-blue-600 text-white"
-                  : "bg-slate-600 text-gray-300 hover:bg-slate-500"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
-              {lev}x
+              <BarChart3 className="w-3 h-3" />
+              Simple
             </button>
-          ))}
+            <button
+              type="button"
+              onClick={() => setLeverageView("advanced")}
+              className={`flex items-center gap-1 py-1 px-2 rounded text-xs transition-colors ${
+                leverageView === "advanced"
+                  ? "bg-blue-600 text-white"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              <Sliders className="w-3 h-3" />
+              Advanced
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Leverage Visualizer */}
-      <LeverageVisualizer
-        leverage={leverage}
-        onLeverageChange={setLeverage}
-        tradeAmount={parseFloat(tradeAmount || "0")}
-        collateralRequired={getCollateralRequired()}
-        positionValue={getPositionValue()}
-        tradeDirection={tradeDirection}
-      />
+        {leverageView === "simple" ? (
+          <div className="flex space-x-2">
+            {[2, 5, 10, 20].map((lev) => (
+              <button
+                key={lev}
+                type="button"
+                onClick={() => setLeverage(lev)}
+                className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                  leverage === lev
+                    ? "bg-blue-600 text-white"
+                    : "bg-slate-600 text-gray-300 hover:bg-slate-500"
+                }`}
+              >
+                {lev}x
+              </button>
+            ))}
+          </div>
+        ) : (
+          <LeverageVisualizer
+            leverage={leverage}
+            onLeverageChange={setLeverage}
+            tradeAmount={parseFloat(tradeAmount || "0")}
+            collateralRequired={getCollateralRequired()}
+            positionValue={getPositionValue()}
+            tradeDirection={tradeDirection}
+          />
+        )}
+      </div>
 
       {/* Collateral Selection */}
       <div>
