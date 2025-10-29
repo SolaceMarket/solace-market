@@ -27,27 +27,27 @@ export function WhyChooseSection() {
     {
       icon: DollarSign,
       title: "Revolutionary Collateral System",
-      subtitle: "Use what you own",
+      subtitle: "First exchange to offer this",
       description:
-        "Why limit yourself to cash-only margins? Our flexible collateral system lets you leverage your entire portfolio efficiently.",
+        "Use your Web2 assets like stocks and bonds as collateral for Web3 trades. No CEX or DEX offers this unique feature.",
       points: [
-        "Any asset can serve as collateral",
-        "Optimize capital allocation",
-        "Reduce cash requirements",
-        "Maintain portfolio diversification",
+        "Stocks as collateral for crypto",
+        "Cross-asset trading opportunities",
+        "Keep your existing positions",
+        "Maximize capital efficiency",
       ],
     },
     {
       icon: TrendingUp,
-      title: "Unlimited Market Access",
-      subtitle: "Trade without boundaries",
+      title: "Direct Web2 to Web3 Trading",
+      subtitle: "Smart routing technology",
       description:
-        "Access global markets from stocks to commodities, bonds to alternatives - all through one unified interface.",
+        "Trade your traditional assets directly against crypto without complex swapping. Our smart routing handles everything behind the scenes.",
       points: [
-        "Multi-asset class support",
-        "Global exchange connectivity",
-        "Real-time market data",
-        "Unified portfolio management",
+        "No swapping through intermediary assets",
+        "Optimal execution algorithms",
+        "Reduced trading fees",
+        "Faster settlement times",
       ],
     },
   ];

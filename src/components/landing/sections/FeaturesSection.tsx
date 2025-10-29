@@ -14,35 +14,35 @@ export function FeaturesSection() {
   const features = [
     {
       icon: Globe,
-      title: "Multi-Exchange Access",
+      title: "Use Any Asset as Collateral",
       description:
-        "Connect to major exchanges worldwide and access diverse asset classes from a single platform.",
+        "Revolutionary feature no other exchange offers: Use your stocks, bonds, or commodities as collateral for trades.",
       benefits: [
-        "Global market reach",
-        "Consolidated portfolio view",
-        "Unified trading experience",
+        "Stocks as collateral for crypto trades",
+        "No need to sell existing positions",
+        "Maximize capital efficiency",
       ],
     },
     {
       icon: Filter,
-      title: "Advanced Asset Filtering",
+      title: "Smart Routing Technology",
       description:
-        "Find exactly what you're looking for with powerful search and filtering capabilities.",
+        "No need to swap through multiple assets. Our smart routing finds the best path for your trades automatically.",
       benefits: [
-        "Smart search functionality",
-        "Custom filter combinations",
-        "Real-time results",
+        "Direct asset-to-asset trading",
+        "Optimal price execution",
+        "Reduced transaction costs",
       ],
     },
     {
       icon: Wallet,
-      title: "Flexible Collateral System",
+      title: "Wallet-First Trading",
       description:
-        "Use any supported asset as collateral, maximizing your capital efficiency and trading opportunities.",
+        "Connect your wallet and start trading immediately. No KYC, no personal information required.",
       benefits: [
-        "Capital optimization",
-        "Reduced margin requirements",
-        "Portfolio diversification",
+        "Complete privacy protection",
+        "Instant access to markets",
+        "Secure wallet integration",
       ],
     },
     {
