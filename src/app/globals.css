@@ -128,8 +128,45 @@
   }
 }
 
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .animate-blob {
   animation: blob 7s infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.animate-gradient-flow {
+  background: linear-gradient(-45deg, #059669, #16a34a, #22c55e, #10b981);
+  background-size: 400% 400%;
+  animation: gradient-flow 3s ease-in-out infinite;
+  will-change: background-position;
 }
 
 .animation-delay-2000 {
