@@ -27,7 +27,7 @@ export function HeroSection() {
 
         {/* Super short title */}
         <h2 className="text-xl md:text-2xl font-semibold text-teal-200 mb-3">
-          Trade with Peace of Mind
+          Invest with Peace of Mind
         </h2>
 
         {/* Pain point solutions - better space utilization */}
