@@ -285,16 +285,6 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
                   </div>
                 </div>
               )}
-
-              <div className="border-t border-slate-500 pt-2 mt-2">
-                <div className="flex justify-between text-white font-semibold">
-                  <span>Total:</span>
-                  <span>
-                    {feeCalculation.total.toFixed(4)}{" "}
-                    {selectedCollateralAsset.symbol}
-                  </span>
-                </div>
-              </div>
             </div>
           )}
         </div>
