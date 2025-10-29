@@ -4,6 +4,7 @@ import { ArrowUpDown } from "lucide-react";
 import { useState } from "react";
 import type { AssetData } from "@/types/assets";
 import { AssetLogo } from "./shared/AssetLogo";
+import { QuickAmountButtons } from "./shared/QuickAmountButtons";
 
 interface SwapInterfaceProps {
   asset: AssetData;
@@ -120,21 +121,12 @@ export function SwapInterface({
         </div>
 
         {/* Amount Input Helper */}
-        <div className="mb-6">
-          <p className="text-gray-400 text-sm mb-2">Quick amounts:</p>
-          <div className="flex space-x-2">
-            {["1", "5", "10", "25"].map((amount) => (
-              <button
-                key={amount}
-                type="button"
-                onClick={() => setSwapAmount(amount)}
-                className="bg-slate-600 hover:bg-slate-500 text-white px-3 py-1 rounded text-sm transition-colors"
-              >
-                {amount}
-              </button>
-            ))}
-          </div>
-        </div>
+        <QuickAmountButtons
+          amounts={["1", "5", "10", "25"]}
+          onAmountSelect={setSwapAmount}
+          label="Quick amounts:"
+          className="mb-6"
+        />
 
         {/* Swap Button */}
         <button

@@ -13,6 +13,7 @@ import { useCollateralAssets } from "@/hooks/useCollateralAssets";
 import type { AssetData } from "@/types/assets";
 import { PortfolioCollateralSearchModal } from "../PortfolioCollateralSearchModal";
 import { AssetLogo } from "../shared/AssetLogo";
+import { QuickAmountButtons } from "../shared/QuickAmountButtons";
 
 interface CollateralAsset {
   id: string;
@@ -414,22 +415,8 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
             </div>
           </div>
           {/* Quick Amount Buttons */}
-          <div>
-            <p className="text-gray-400 text-sm mb-2">Quick amounts:</p>
-            <div className="flex space-x-2">
-              {["0.1", "0.5", "1", "5"].map((amount) => (
-                <button
-                  key={amount}
-                  type="button"
-                  onClick={() => setSwapAmount(amount)}
-                  className="bg-slate-600 hover:bg-slate-500 text-white px-3 py-1 rounded text-sm transition-colors"
-                >
-                  {amount}
-                </button>
-              ))}
-            </div>
-          </div>
-          {/* Swap Button */}
+          <QuickAmountButtons onAmountSelect={setSwapAmount} />
+
           <button
             type="button"
             onClick={handleSwap}

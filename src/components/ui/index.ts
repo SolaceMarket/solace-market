@@ -11,6 +11,7 @@ export { SwapInterface } from "./SwapInterface";
 // Shared utilities
 export { AssetLogo } from "./shared/AssetLogo";
 export { CollateralAssetSearch } from "./shared/CollateralAssetSearch";
+export { QuickAmountButtons } from "./shared/QuickAmountButtons";
 export { SolaceLogo } from "./shared/SolaceLogo";
 export { TabBar } from "./TabBar";
 export { TradingInterface } from "./TradingInterface";
