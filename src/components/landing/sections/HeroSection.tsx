@@ -26,7 +26,7 @@ export function HeroSection() {
 
         {/* Super short title with glow */}
         <GlowEffect variant="text" glowColor="emerald" className="mb-6">
-          <h2 className="text-xl md:text-2xl font-semibold text-teal-200">
+          <h2 className="text-xl md:text-2xl font-semibold text-green-300">
             Invest with Peace of Mind
           </h2>
         </GlowEffect>
@@ -106,7 +106,7 @@ export function HeroSection() {
         <div className="mb-6">
           <Link
             href="/onboarding"
-            className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-16 py-5 rounded-xl font-semibold text-xl transition-all duration-300 shadow-xl hover:shadow-teal-500/30 w-fit mx-auto block"
+            className="bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-500 hover:to-green-600 text-white px-16 py-5 rounded-xl font-semibold text-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 w-fit mx-auto block"
           >
             Get Started
           </Link>
