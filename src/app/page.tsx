@@ -4,6 +4,7 @@ import { Web3AuthProvider } from "@web3auth/modal/react";
 import { HomePage } from "@/components/pages/HomePage";
 import { usePlatform } from "@/nextjs/hooks/usePlatform";
 import web3AuthContextConfig from "@/web3auth/web3authContext";
+import Web3Onboarding from "./web3-onboarding/page";
 
 export default function Home() {
   const [isDetermined, platform] = usePlatform();
@@ -13,7 +14,8 @@ export default function Home() {
 
   return (
     <Web3AuthProvider config={web3AuthContextConfig}>
-      <HomePage />
+      {/* <HomePage /> */}
+      <Web3Onboarding />
     </Web3AuthProvider>
   );
 }
