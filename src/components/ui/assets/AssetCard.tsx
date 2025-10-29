@@ -1,6 +1,6 @@
 import type { Asset } from "@/alpaca/assets/Asset";
 import type { AssetStats } from "@/data/assetData";
-import { AssetLogo } from "./shared/AssetLogo";
+import { AssetLogo } from "../shared/AssetLogo";
 
 interface AssetCardProps {
   asset: Asset;

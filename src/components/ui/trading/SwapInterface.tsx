@@ -3,8 +3,8 @@
 import { ArrowUpDown } from "lucide-react";
 import { useState } from "react";
 import type { AssetData } from "@/types/assets";
-import { AssetLogo } from "./shared/AssetLogo";
-import { QuickAmountButtons } from "./shared/QuickAmountButtons";
+import { AssetLogo } from "../shared/AssetLogo";
+import { QuickAmountButtons } from "../shared/QuickAmountButtons";
 
 interface SwapInterfaceProps {
   asset: AssetData;

@@ -1,25 +1,37 @@
-// UI Components with illumination and glow effects
+// UI Components - Organized by category
 
-export { AssetFilterModal } from "./AssetFilterModal";
-export { AssetInfoHeader } from "./AssetInfoHeader";
+// Asset-related components
+export * from "./assets";
+
+// Base components
+export * from "./base";
+
 // Chart components
-export { TradingChart } from "./charts/TradingChart";
+export * from "./charts";
+
+// Data display components
+export * from "./data";
+
+// Visual effects
+export * from "./effects";
+
 // Filter components
 export * from "./filters";
-export { GlowEffect } from "./GlowEffect";
-export { IlluminationBackground } from "./IlluminationBackground";
-export { PageHeader } from "./PageHeader";
-export { SwapInterface } from "./SwapInterface";
+
+// Form elements and UI primitives
+export * from "./forms";
+
+// Layout and navigation components
+export * from "./layout";
+
+// Modal and search components
+export * from "./modals";
+
+// Portfolio components
+export * from "./portfolio";
+
 // Shared utilities
-export { AssetLogo } from "./shared/AssetLogo";
-export { CollateralAssetSearch } from "./shared/CollateralAssetSearch";
-export { ExpandablePriceDisplay } from "./shared/ExpandablePriceDisplay";
-export { QuickAmountButtons } from "./shared/QuickAmountButtons";
-export { SolaceLogo } from "./shared/SolaceLogo";
-export { TabBar } from "./TabBar";
-export { TradingInterface } from "./TradingInterface";
+export * from "./shared";
+
 // Trading components
-export { ChartTab } from "./trading/ChartTab";
-export { LeverageTab } from "./trading/LeverageTab";
-export { LeverageVisualizer } from "./trading/LeverageVisualizer";
-export { SwapTab } from "./trading/SwapTab";
+export * from "./trading";

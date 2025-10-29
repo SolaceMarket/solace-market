@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { useCollateralAssets } from "@/hooks/useCollateralAssets";
 import type { AssetData } from "@/types/assets";
-import { PortfolioCollateralSearchModal } from "../PortfolioCollateralSearchModal";
+import { PortfolioCollateralSearchModal } from "../modals/PortfolioCollateralSearchModal";
 import { AssetLogo } from "../shared/AssetLogo";
 import { QuickAmountButtons } from "../shared/QuickAmountButtons";
 

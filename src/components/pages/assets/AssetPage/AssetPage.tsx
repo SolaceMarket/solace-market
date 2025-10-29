@@ -1,15 +1,15 @@
+import { AssetHeader } from "@/components/ui/assets/AssetHeader";
+import { AssetNewsCard } from "@/components/ui/assets/AssetNewsCard";
+import { SimilarAssets } from "@/components/ui/assets/SimilarAssets";
+import { TechnicalAnalysis } from "@/components/ui/assets/TechnicalAnalysis";
+import { StatCard } from "@/components/ui/data/StatCard";
 import {
-  getAssetBySymbol,
-  getSimilarAssets,
-  getAssetStats,
-  getAssetNews,
   getAssetAnalytics,
+  getAssetBySymbol,
+  getAssetNews,
+  getAssetStats,
+  getSimilarAssets,
 } from "@/data/assetData";
-import { AssetHeader } from "@/components/ui/AssetHeader";
-import { TechnicalAnalysis } from "@/components/ui/TechnicalAnalysis";
-import { AssetNewsCard } from "@/components/ui/AssetNewsCard";
-import { SimilarAssets } from "@/components/ui/SimilarAssets";
-import { StatCard } from "@/components/ui/StatCard";
 
 export interface AssetPageProps {
   symbol: string;

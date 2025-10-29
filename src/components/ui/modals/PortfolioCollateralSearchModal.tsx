@@ -1,7 +1,7 @@
 "use client";
 
 import { useCollateralAssets } from "@/hooks/useCollateralAssets";
-import { BaseAssetSearchModal } from "./base/BaseAssetSearchModal";
+import { BaseAssetSearchModal } from "../base/BaseAssetSearchModal";
 
 interface CollateralAsset {
   id: string;

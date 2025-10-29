@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { type User as FirebaseUser, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { onAuthStateChanged, type User as FirebaseUser } from "firebase/auth";
-import { auth } from "@/firebase/InitializeFirebase";
-import Loader from "@/components/ui/Loader";
+import { useEffect, useState } from "react";
 import AdminHeader from "@/components/admin/AdminHeader";
-import UserFilters from "@/components/admin/UserFilters";
 import AlpacaAccountsSection from "@/components/admin/AlpacaAccountsSection";
+import UserFilters from "@/components/admin/UserFilters";
 import UsersTable from "@/components/admin/UsersTable";
-import { useUsers, useAlpacaAccounts } from "@/hooks/useAdmin";
+import Loader from "@/components/ui/layout/Loader";
+import { auth } from "@/firebase/InitializeFirebase";
+import { useAlpacaAccounts, useUsers } from "@/hooks/useAdmin";
 
 export default function AdminUsersPage() {
   const router = useRouter();

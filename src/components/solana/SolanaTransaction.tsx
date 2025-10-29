@@ -24,7 +24,7 @@ import { useWalletAccountTransactionSendingSigner } from "@solana/react";
 import { getTransferSolInstruction } from "@solana-program/system";
 import type { UiWalletAccount } from "@wallet-standard/react";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
-import { Button } from "../ui/button";
+import { Button } from "../ui/forms/button";
 
 export const ConnectedSolanaTransaction = ({
   account,

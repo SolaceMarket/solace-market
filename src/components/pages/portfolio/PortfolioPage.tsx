@@ -1,11 +1,11 @@
+import Link from "next/link";
+import { AssetAllocationChart } from "@/components/ui/data/AssetAllocationChart";
+import { Navigation } from "@/components/ui/layout/Navigation";
+import { PortfolioHoldingsTable } from "@/components/ui/portfolio/PortfolioHoldingsTable";
+import { PortfolioOverview } from "@/components/ui/portfolio/PortfolioOverview";
+import { RecentTransactions } from "@/components/ui/portfolio/RecentTransactions";
 import { getPortfolioSummary } from "@/data/portfolioAnalytics";
 import { getPortfoliosByUserId } from "@/data/portfolioService";
-import { PortfolioOverview } from "@/components/ui/PortfolioOverview";
-import { PortfolioHoldingsTable } from "@/components/ui/PortfolioHoldingsTable";
-import { AssetAllocationChart } from "@/components/ui/AssetAllocationChart";
-import { RecentTransactions } from "@/components/ui/RecentTransactions";
-import { Navigation } from "@/components/ui/Navigation";
-import Link from "next/link";
 
 interface PortfolioPageProps {
   userId: string;

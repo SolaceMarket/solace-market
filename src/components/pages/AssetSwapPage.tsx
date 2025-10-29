@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { AssetInfoHeader } from "@/components/ui/AssetInfoHeader";
-import { TradingInterface } from "@/components/ui/TradingInterface";
+import { AssetInfoHeader } from "@/components/ui/assets/AssetInfoHeader";
+import { TradingInterface } from "@/components/ui/trading/TradingInterface";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
 import { getSwapAssets } from "@/data/mockAssets";
 

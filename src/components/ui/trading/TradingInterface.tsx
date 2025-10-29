@@ -3,9 +3,9 @@
 import { BarChart3, TrendingUp } from "lucide-react";
 import { useState } from "react";
 import type { AssetData } from "@/types/assets";
-import { ChartTab } from "./trading/ChartTab";
-import { LeverageTab } from "./trading/LeverageTab";
-import { SwapTab } from "./trading/SwapTab";
+import { ChartTab } from "./ChartTab";
+import { LeverageTab } from "./LeverageTab";
+import { SwapTab } from "./SwapTab";
 
 interface TradingInterfaceProps {
   asset: AssetData;

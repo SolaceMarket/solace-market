@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { AssetFilterModal } from "@/components/ui/AssetFilterModal";
-import { AssetSearchModal } from "@/components/ui/AssetSearchModal";
+import { AssetFilterModal } from "@/components/ui/modals/AssetFilterModal";
+import { AssetSearchModal } from "@/components/ui/modals/AssetSearchModal";
 import { AssetLogo } from "@/components/ui/shared/AssetLogo";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
 import { getListAssets } from "@/data/mockAssets";

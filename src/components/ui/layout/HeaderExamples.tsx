@@ -1,9 +1,9 @@
 // Example usage of the enhanced PageHeader component
 
 import { AppLayout } from "@/components/layout/AppLayout";
-import { HeaderNavigation } from "@/components/ui/HeaderNavigation";
-import { MobileHeader } from "@/components/ui/MobileHeader";
-import { PageHeader } from "@/components/ui/PageHeader";
+import { HeaderNavigation } from "./HeaderNavigation";
+import { MobileHeader } from "./MobileHeader";
+import { PageHeader } from "./PageHeader";
 
 // Example 1: Basic centered header with back button and text
 export function ExamplePage1() {

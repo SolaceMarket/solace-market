@@ -7,8 +7,12 @@ import {
 } from "@wallet-standard/react";
 import { ChevronDown, LogOut, Wallet } from "lucide-react";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/forms/avatar";
+import { Button } from "@/components/ui/forms/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +20,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/forms/dropdown-menu";
 import { useSolana } from "@/components/web3/solana/SolanaProvider";
 
 function truncateAddress(address: string): string {

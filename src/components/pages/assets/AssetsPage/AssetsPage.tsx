@@ -1,5 +1,5 @@
-import { AssetsSummary } from "@/components/ui/AssetsSummary";
-import { Navigation } from "@/components/ui/Navigation";
+import { AssetsSummary } from "@/components/ui/data/AssetsSummary";
+import { Navigation } from "@/components/ui/layout/Navigation";
 import {
   type AssetFilters,
   getAssetsSummary,
@@ -9,8 +9,8 @@ import {
   getAssetClasses,
   getAssetExchanges,
 } from "@/turso/tables/assets/selectAssets";
-import { ServerAssetsTable } from "../../../ui/ServerAssetsTable";
-import { ServerSearchAndFilters } from "../../../ui/ServerSearchAndFilters";
+import { ServerAssetsTable } from "../../../ui/data/ServerAssetsTable";
+import { ServerSearchAndFilters } from "../../../ui/modals/ServerSearchAndFilters";
 
 interface AssetsPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

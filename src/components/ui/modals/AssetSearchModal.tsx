@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useAssetSearch } from "@/hooks/useAssetSearch";
-import { BaseAssetSearchModal } from "./base/BaseAssetSearchModal";
+import { BaseAssetSearchModal } from "../base/BaseAssetSearchModal";
 
 interface Asset {
   id: string;

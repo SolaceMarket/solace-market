@@ -21,7 +21,7 @@ import {
   SecurityInfoCard,
   WalletInfoCard,
 } from "@/components/admin/user-detail";
-import Loader from "@/components/ui/Loader";
+import Loader from "@/components/ui/layout/Loader";
 import { auth } from "@/firebase/InitializeFirebase";
 
 export default function AdminUserDetailPage() {

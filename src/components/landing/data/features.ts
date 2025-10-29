@@ -16,7 +16,7 @@ export const FEATURES = [
     title: "Privacy First",
     shortTitle: "No KYC - Just connect & trade",
     description:
-      "No KYC requirements, no personal data collection. Just connect your wallet and start trading instantly",
+      "No KYC  to start trading, no personal data collection. Just connect your wallet and start trading instantly",
     color: "blue",
   },
   {

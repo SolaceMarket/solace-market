@@ -1,8 +1,8 @@
 "use client";
 
 import type { AssetData } from "@/types/assets";
-import { AssetLogo } from "./shared/AssetLogo";
-import { ExpandablePriceDisplay } from "./shared/ExpandablePriceDisplay";
+import { AssetLogo } from "../shared/AssetLogo";
+import { ExpandablePriceDisplay } from "../shared/ExpandablePriceDisplay";
 
 interface AssetInfoHeaderProps {
   asset: AssetData;

@@ -1,21 +1,21 @@
+import { EnhancedAssetsTable } from "@/components/ui/data/EnhancedAssetsTable";
+import { ExchangeHeader } from "@/components/ui/data/ExchangeHeader";
+import { MarketSentiment } from "@/components/ui/data/MarketSentiment";
+import { NewsCard } from "@/components/ui/data/NewsCard";
+import { QuickStats } from "@/components/ui/data/QuickStats";
+import { RankingTable } from "@/components/ui/data/RankingTable";
+import { StatCard } from "@/components/ui/data/StatCard";
+import { ProgressBar } from "@/components/ui/forms/ProgressBar";
+import { exchangeData, getExchangeNews } from "@/data/exchangeInfo";
+import {
+  getExchangeComparison,
+  getExchangeStats,
+} from "@/turso/tables/assets/exchangeStats";
 import {
   defaultPagination,
   getAssetsByExchange,
   getTradableAssetsByExchange,
 } from "@/turso/tables/assets/selectAssets";
-import {
-  getExchangeStats,
-  getExchangeComparison,
-} from "@/turso/tables/assets/exchangeStats";
-import { exchangeData, getExchangeNews } from "@/data/exchangeInfo";
-import { StatCard } from "@/components/ui/StatCard";
-import { ProgressBar } from "@/components/ui/ProgressBar";
-import { RankingTable } from "@/components/ui/RankingTable";
-import { EnhancedAssetsTable } from "@/components/ui/EnhancedAssetsTable";
-import { ExchangeHeader } from "@/components/ui/ExchangeHeader";
-import { NewsCard } from "@/components/ui/NewsCard";
-import { MarketSentiment } from "@/components/ui/MarketSentiment";
-import { QuickStats } from "@/components/ui/QuickStats";
 
 export interface ExchangePageProps {
   name: string;

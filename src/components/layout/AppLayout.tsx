@@ -1,8 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { TabBar } from "@/components/ui/TabBar";
+import { PageHeader } from "@/components/ui/layout/PageHeader";
+import { TabBar } from "@/components/ui/layout/TabBar";
 
 interface AppLayoutProps {
   children: ReactNode;

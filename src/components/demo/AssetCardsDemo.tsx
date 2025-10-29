@@ -1,6 +1,6 @@
 import type { Asset } from "@/alpaca/assets/Asset";
 import type { AssetStats } from "@/data/assetData";
-import { AssetCard } from "../ui/AssetCard";
+import { AssetCard } from "../ui/assets/AssetCard";
 
 export function AssetCardsDemo() {
   // Mock asset data

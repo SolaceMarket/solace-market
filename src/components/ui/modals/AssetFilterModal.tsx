@@ -10,7 +10,7 @@ import {
   PropertiesFilter,
   type SortOptions,
   SortSection,
-} from "./filters";
+} from "../filters";
 
 interface AssetFilterModalProps {
   isOpen: boolean;
