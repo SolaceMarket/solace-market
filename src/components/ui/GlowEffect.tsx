@@ -42,7 +42,7 @@ export function GlowEffect({
       case "logo":
         return {
           wrapper: "relative",
-          glow: `absolute inset-0 ${selectedColor}/${selectedIntensity.opacity} rounded-full ${selectedIntensity.blur} ${selectedIntensity.scale}`,
+          glow: `absolute inset-0 ${selectedColor}/${selectedIntensity.opacity} rounded-full ${selectedIntensity.blur} ${selectedIntensity.scale} md:w-20 md:h-20 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2`,
           content: "relative z-10 drop-shadow-2xl",
         };
 
