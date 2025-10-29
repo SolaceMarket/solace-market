@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Coins, TrendingUp, Wallet } from "lucide-react";
+import { Coins, TrendingUp, Wallet } from "lucide-react";
 import Link from "next/link";
 import { SolaceLogo } from "@/components/ui/shared/SolaceLogo";
 
@@ -26,39 +26,39 @@ export function HeroSection() {
         </div>
 
         {/* Super short title */}
-        <h2 className="text-xl md:text-2xl font-semibold text-teal-200 mb-3">
+        <h2 className="text-xl md:text-2xl font-semibold text-teal-200 mb-6">
           Invest with Peace of Mind
         </h2>
 
         {/* Pain point solutions - better space utilization */}
-        <div className="space-y-3 mb-8 max-w-sm mx-auto">
-          <div className="bg-slate-800/40 backdrop-blur-sm border border-teal-500/20 rounded-lg p-4 hover:border-teal-400/40 transition-all duration-300">
-            <div className="flex items-center gap-3">
-              <TrendingUp className="w-6 h-6 text-teal-400 flex-shrink-0" />
+        <div className="space-y-4 mb-8 max-w-md mx-auto">
+          <div className="bg-slate-800/40 backdrop-blur-sm border border-teal-500/20 rounded-lg p-5 hover:border-teal-400/40 transition-all duration-300">
+            <div className="flex items-center gap-4">
+              <TrendingUp className="w-7 h-7 text-teal-400 flex-shrink-0" />
               <div className="text-left">
-                <h3 className="text-sm font-semibold text-white leading-tight">
+                <h3 className="text-base text-white leading-tight">
                   Trade Stocks, Bonds, Crypto, Commodities & more!
                 </h3>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-800/40 backdrop-blur-sm border border-blue-500/20 rounded-lg p-4 hover:border-blue-400/40 transition-all duration-300">
-            <div className="flex items-center gap-3">
-              <Wallet className="w-6 h-6 text-blue-400 flex-shrink-0" />
+          <div className="bg-slate-800/40 backdrop-blur-sm border border-blue-500/20 rounded-lg p-5 hover:border-blue-400/40 transition-all duration-300">
+            <div className="flex items-center gap-4">
+              <Wallet className="w-7 h-7 text-blue-400 flex-shrink-0" />
               <div className="text-left">
-                <h3 className="text-sm font-semibold text-white leading-tight">
+                <h3 className="text-base text-white leading-tight">
                   No KYC - Just connect & trade
                 </h3>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-800/40 backdrop-blur-sm border border-emerald-500/20 rounded-lg p-4 hover:border-emerald-400/40 transition-all duration-300">
-            <div className="flex items-center gap-3">
-              <Coins className="w-6 h-6 text-emerald-400 flex-shrink-0" />
+          <div className="bg-slate-800/40 backdrop-blur-sm border border-emerald-500/20 rounded-lg p-5 hover:border-emerald-400/40 transition-all duration-300">
+            <div className="flex items-center gap-4">
+              <Coins className="w-7 h-7 text-emerald-400 flex-shrink-0" />
               <div className="text-left">
-                <h3 className="text-sm font-semibold text-white leading-tight">
+                <h3 className="text-base text-white leading-tight">
                   Use any asset as collateral
                 </h3>
               </div>
@@ -66,14 +66,13 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Larger CTA button */}
-        <div className="mb-4">
+        {/* General CTA button without arrow */}
+        <div className="mb-6">
           <Link
             href="/onboarding"
-            className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-12 py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center gap-3 group shadow-xl hover:shadow-teal-500/30 w-fit mx-auto"
+            className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-16 py-5 rounded-xl font-semibold text-xl transition-all duration-300 shadow-xl hover:shadow-teal-500/30 w-fit mx-auto block"
           >
-            Start Trading
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            Get Started
           </Link>
         </div>
 
