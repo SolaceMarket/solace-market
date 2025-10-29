@@ -161,12 +161,12 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
         <div className="block text-gray-400 text-sm mb-2">
           Pay With (From Your Portfolio)
         </div>
-        <div className="bg-slate-700 rounded-lg p-4 space-y-3">
+        <div className="bg-slate-700 rounded-lg overflow-hidden">
           {/* Asset Selection Button */}
           <button
             type="button"
             onClick={() => setIsAssetModalOpen(true)}
-            className="w-full bg-slate-600 rounded-lg p-3 hover:bg-slate-500 transition-colors focus:ring-2 focus:ring-green-500 outline-none"
+            className="w-full p-4 hover:bg-slate-600 transition-colors focus:ring-2 focus:ring-green-500 outline-none"
           >
             {selectedCollateralAsset ? (
               <div className="flex items-center justify-between">
@@ -225,38 +225,35 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
             )}
           </button>
 
-          {/* Total Amount Row */}
+          {/* Total Amount Row - separated by border */}
           {selectedCollateralAsset && (
-            <div className="flex items-center justify-between bg-slate-600 rounded-lg p-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                  {getAssetLogo(selectedCollateralAsset.logo)}
-                </div>
+            <div className="border-t border-slate-600 p-4">
+              <div className="flex items-center justify-between">
                 <span className="text-white font-medium">Total:</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span className="text-white text-lg font-semibold">
-                  {feeCalculation.total.toFixed(4)}{" "}
-                  {selectedCollateralAsset.symbol}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setShowFeeDetails(!showFeeDetails)}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  {showFeeDetails ? (
-                    <ChevronUp className="w-4 h-4" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4" />
-                  )}
-                </button>
+                <div className="flex items-center space-x-2">
+                  <span className="text-white text-lg font-semibold">
+                    {feeCalculation.total.toFixed(4)}{" "}
+                    {selectedCollateralAsset.symbol}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setShowFeeDetails(!showFeeDetails)}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    {showFeeDetails ? (
+                      <ChevronUp className="w-4 h-4" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           )}
 
           {/* Fee Details Collapsible */}
           {selectedCollateralAsset && showFeeDetails && (
-            <div className="bg-slate-600 rounded-lg p-3 space-y-2 text-sm">
+            <div className="border-t border-slate-600 p-4 space-y-2 text-sm">
               {feeCalculation.breakdown.map((fee) => (
                 <div
                   key={fee.label}
