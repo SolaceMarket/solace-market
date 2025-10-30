@@ -54,9 +54,24 @@ export const Marquee = ({
 interface FeatureCardProps {
   feature: Feature;
   variant: "mobile" | "desktop";
+  borderTop?: boolean;
+  borderBottom?: boolean;
+  borderTopLeftRadius?: boolean;
+  borderTopRightRadius?: boolean;
+  borderBottomLeftRadius?: boolean;
+  borderBottomRightRadius?: boolean;
 }
 
-export function FeatureCard({ feature, variant }: FeatureCardProps) {
+export function FeatureCard({
+  feature,
+  variant,
+  borderTop,
+  borderBottom,
+  borderTopLeftRadius,
+  borderTopRightRadius,
+  borderBottomLeftRadius,
+  borderBottomRightRadius,
+}: FeatureCardProps) {
   const { icon: Icon, color } = feature;
   const displayTitle =
     "title" in feature
@@ -89,6 +104,14 @@ export function FeatureCard({ feature, variant }: FeatureCardProps) {
     return (
       <div
         className={`bg-slate-800/20 border ${baseClasses} ${colorClasses[color].split(" ").slice(0, 2).join(" ")} p-5`}
+        style={{
+          borderTopWidth: borderTop ? 1 : 0,
+          ...(!borderTopLeftRadius && { borderTopLeftRadius: 0 }),
+          ...(!borderTopRightRadius && { borderTopRightRadius: 0 }),
+          ...(!borderBottomLeftRadius && { borderBottomLeftRadius: 0 }),
+          ...(!borderBottomRightRadius && { borderBottomRightRadius: 0 }),
+          borderBottomWidth: borderBottom ? 1 : 0,
+        }}
       >
         <div className="flex items-start gap-4">
           {feature.showIcon && (

@@ -84,7 +84,7 @@ export function CTAButton() {
   }
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 flex gap-4 flex-col">
       <TrustMessage />
 
       <button

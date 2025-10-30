@@ -6,7 +6,7 @@ export const FEATURES = [
     id: "trading",
     icon: TrendingUp,
     title: "Trade Everything",
-    subtitle: "Stocks, Bonds, Crypto, Commodities & more",
+    subtitle: "Stocks, Bonds, Crypto & more",
     shortTitle: "Trade Stocks, Bonds, Crypto, Commodities & more!",
     description:
       "Access global markets including stocks, bonds, crypto, commodities, and more from one platform",
@@ -35,8 +35,8 @@ export const FEATURES = [
     id: "collateral",
     icon: Coins,
     title: "Unlimited Collateral",
-    subtitle: "Use any asset",
-    shortTitle: "Use any asset as collateral",
+    subtitle: "Use any asset for leveral",
+    shortTitle: "Use any asset as collateral for leverage",
     description:
       "Use any asset as collateral for trades. Maximize capital efficiency like never before",
     color: "emerald",
