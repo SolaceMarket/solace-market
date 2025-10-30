@@ -13,14 +13,14 @@ interface TradingInterfaceProps {
   embedded?: boolean;
 }
 
-type TradingMode = "chart" | "swap" | "leverage";
+type TradingMode = "swap" | "leverage";
 
 export function TradingInterface({
   asset,
   onTradeComplete,
   embedded = false,
 }: TradingInterfaceProps) {
-  const [tradingMode, setTradingMode] = useState<TradingMode>("chart");
+  const [tradingMode, setTradingMode] = useState<TradingMode>("swap");
 
   return (
     <div className={!embedded ? "p-6" : ""}>
@@ -32,7 +32,7 @@ export function TradingInterface({
           {/* Trading Mode Tabs */}
           <div className="mb-6">
             <div className="flex bg-slate-700 rounded-lg p-1">
-              <button
+              {/* <button
                 type="button"
                 onClick={() => setTradingMode("chart")}
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
@@ -45,7 +45,7 @@ export function TradingInterface({
                   <BarChart3 className="w-4 h-4" />
                   <span>Chart</span>
                 </div>
-              </button>
+              </button> */}
               <button
                 type="button"
                 onClick={() => setTradingMode("swap")}
@@ -75,7 +75,7 @@ export function TradingInterface({
           </div>
 
           {/* Render appropriate tab component */}
-          {tradingMode === "chart" && <ChartTab asset={asset} />}
+          {/* {tradingMode === "chart" && <ChartTab asset={asset} />} */}
           {tradingMode === "swap" && (
             <SwapTab asset={asset} onSwapComplete={onTradeComplete} />
           )}

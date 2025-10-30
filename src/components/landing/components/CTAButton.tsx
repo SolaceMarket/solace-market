@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { TrustMessage } from "./TrustMessage";
 
 export function CTAButton() {
   const [email, setEmail] = useState("");
@@ -84,6 +85,8 @@ export function CTAButton() {
 
   return (
     <div className="mb-6">
+      <TrustMessage />
+
       <button
         type="button"
         onClick={handleGetStarted}
