@@ -14,6 +14,7 @@ export const FEATURES = [
     logos: [
       { src: "/logos/apple.svg", alt: "Apple", name: "AAPL" },
       { src: "/logos/microsoft.svg", alt: "Microsoft", name: "MSFT" },
+      { src: "/logos/tesla_motors.svg", alt: "Tesla Motors", name: "TSLA" },
       { src: "/logos/google.svg", alt: "Google", name: "GOOGL" },
       { src: "/logos/bitcoin.svg", alt: "Bitcoin", name: "BTC" },
       { src: "/logos/solana.svg", alt: "Solana", name: "SOL" },

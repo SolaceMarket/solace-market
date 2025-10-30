@@ -42,15 +42,14 @@ export function AssetLogo({
       case "microsoft":
         logoSrc = "/logos/microsoft.svg";
         break;
+      case "tesla":
+        logoSrc = "/logos/tesla_motors.svg";
+        break;
       case "google":
         logoSrc = "/logos/google.svg";
         break;
       case "solana":
         logoSrc = "/logos/solana.svg";
-        break;
-      case "tesla":
-        // Tesla doesn't have SVG, use fallback
-        useFallback = true;
         break;
       case "ethereum":
         // Ethereum doesn't have SVG, use fallback

@@ -111,7 +111,7 @@ const baseAssets = [
     change: "-3.45",
     changePercent: "-1.37%",
     isPositive: false,
-    logo: null, // No logo file available, will use fallback
+    logo: "/logos/tesla_motors.svg", // No logo file available, will use fallback
     category: "Stock" as const,
     market: "NASDAQ",
     description:

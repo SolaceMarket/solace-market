@@ -161,7 +161,7 @@ export function SwapTab({ asset, onSwapComplete }: SwapTabProps) {
       <div>
         <div className="block text-gray-400 text-sm mb-2">
           {/* Pay With (From Your Portfolio) */}
-          You provide
+          You Provide
         </div>
         <div className="bg-slate-700 rounded-lg overflow-hidden">
           {/* Asset Selection Button */}
