@@ -11,11 +11,11 @@ export function LandingPage() {
   return (
     <div className="min-h-screen bg-slate-900">
       <HeroSection />
-      <FeaturesSection />
+      {/* <FeaturesSection />
       <WhyChooseSection />
       <SecuritySection />
       <CTASection />
-      <FooterSection />
+      <FooterSection /> */}
     </div>
   );
 }
