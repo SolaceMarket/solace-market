@@ -6,7 +6,7 @@ import {
   CTAButton,
   FeaturesGrid,
   HeroHeader,
-  TrustMessage,
+  // TrustMessage,
 } from "../components";
 
 export function HeroSection() {
@@ -28,7 +28,7 @@ export function HeroSection() {
 
         <CTAButton />
 
-        <TrustMessage />
+        {/* <TrustMessage /> */}
       </div>
     </section>
   );

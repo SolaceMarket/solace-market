@@ -1,4 +1,55 @@
+import Image from "next/image";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Feature, FeatureColor } from "../data/features";
+
+export const Marquee = ({
+  children,
+  heightClass = "h-8",
+}: {
+  children: React.ReactNode;
+  heightClass?: string;
+}) => {
+  const MARQUEE_SPEED = 60; // px per second
+
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [duration, setDuration] = useState(18); // fallback duration
+
+  useEffect(() => {
+    const recalc = () => {
+      if (rowRef.current) {
+        const rowWidth = rowRef.current.offsetWidth;
+        const calculated = (rowWidth * 2) / MARQUEE_SPEED;
+        setDuration(calculated);
+      }
+    };
+
+    recalc();
+    window.addEventListener("resize", recalc);
+    return () => window.removeEventListener("resize", recalc);
+  }, []);
+
+  return (
+    <div className={`overflow-hidden w-full relative ${heightClass}`}>
+      <div
+        ref={rowRef}
+        className="flex gap-2 animate-marquee"
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          height: "100%",
+          whiteSpace: "nowrap",
+          animationDuration: `${duration}s`,
+          willChange: "transform",
+        }}
+      >
+        {children}
+        {children}
+      </div>
+    </div>
+  );
+};
 
 interface FeatureCardProps {
   feature: Feature;
@@ -6,7 +57,26 @@ interface FeatureCardProps {
 }
 
 export function FeatureCard({ feature, variant }: FeatureCardProps) {
-  const { icon: Icon, title, shortTitle, description, color } = feature;
+  const { icon: Icon, color } = feature;
+  const displayTitle =
+    "title" in feature
+      ? ((feature as { title?: string }).title ??
+        ("shortTitle" in feature
+          ? ((feature as { shortTitle?: string }).shortTitle ?? "")
+          : ""))
+      : "shortTitle" in feature
+        ? ((feature as { shortTitle?: string }).shortTitle ?? "")
+        : "";
+
+  const subtitle =
+    "subtitle" in feature
+      ? ((feature as { subtitle?: string }).subtitle ??
+        ("shortTitle" in feature
+          ? ((feature as { shortTitle?: string }).shortTitle ?? "")
+          : ""))
+      : "shortTitle" in feature
+        ? ((feature as { shortTitle?: string }).shortTitle ?? "")
+        : "";
 
   const baseClasses = "backdrop-blur-sm rounded-lg transition-all duration-300";
   const colorClasses: Record<FeatureColor, string> = {
@@ -20,12 +90,36 @@ export function FeatureCard({ feature, variant }: FeatureCardProps) {
       <div
         className={`bg-slate-800/20 border ${baseClasses} ${colorClasses[color].split(" ").slice(0, 2).join(" ")} p-5`}
       >
-        <div className="flex items-center gap-4">
-          <Icon
-            className={`w-7 h-7 ${colorClasses[color].split(" ")[2]} flex-shrink-0`}
-          />
-          <div className="text-left">
-            <h3 className="text-base text-white leading-tight">{shortTitle}</h3>
+        <div className="flex items-start gap-4">
+          {feature.showIcon && (
+            <Icon
+              className={`w-7 h-7 ${colorClasses[color].split(" ")[2]} flex-shrink-0 mt-0.5`}
+            />
+          )}
+          <div className="text-left flex-1">
+            <h3 className="text-base text-white font-bold leading-tight mb-1">
+              {displayTitle}
+            </h3>
+            <div className="text-sm text-gray-300 mb-2">{subtitle}</div>
+            {/* Display logos for trading feature */}
+            {"logos" in feature && feature.logos && (
+              <Marquee heightClass="h-8">
+                {feature.logos.map((logo) => (
+                  <div
+                    key={logo.name}
+                    className="w-7 h-7 bg-white/10 border border-indigo-500 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors flex-shrink-0"
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={16}
+                      height={16}
+                      className="opacity-90"
+                    />
+                  </div>
+                ))}
+              </Marquee>
+            )}
           </div>
         </div>
       </div>
@@ -37,10 +131,32 @@ export function FeatureCard({ feature, variant }: FeatureCardProps) {
       className={`bg-slate-800/40 border ${baseClasses} ${colorClasses[color].split(" ").slice(0, 2).join(" ")} p-6 text-center`}
     >
       <Icon
-        className={`w-8 h-8 ${colorClasses[color].split(" ")[2]} mx-auto mb-4`}
+        className={`w-8 h-8 ${colorClasses[color].split(" ")[2]} mx-auto mb-3`}
       />
-      <h3 className="text-lg text-white mb-2">{title}</h3>
-      <p className="text-sm text-gray-400 leading-relaxed">{description}</p>
+      <h3 className="text-lg text-white font-bold mb-1">{displayTitle}</h3>
+      <div className="text-sm text-gray-300 mb-2">
+        {feature.description ?? subtitle}
+      </div>
+      {/* Display logos for trading feature */}
+      {"logos" in feature && feature.logos && (
+        <Marquee heightClass="h-10">
+          {feature.logos.map((logo) => (
+            <div
+              key={logo.name}
+              className="w-8 h-8 bg-white/10 border border-indigo-500 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors flex-shrink-0 mx-2"
+              title={logo.name}
+            >
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={20}
+                height={20}
+                className="opacity-90"
+              />
+            </div>
+          ))}
+        </Marquee>
+      )}
     </div>
   );
 }

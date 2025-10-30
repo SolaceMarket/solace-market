@@ -2,27 +2,40 @@ import { Coins, TrendingUp, Wallet } from "lucide-react";
 
 export const FEATURES = [
   {
+    showIcon: false,
     id: "trading",
     icon: TrendingUp,
-    title: "Multi-Asset Trading",
+    title: "Trade Everything",
+    subtitle: "Stocks, Bonds, Crypto, Commodities & more",
     shortTitle: "Trade Stocks, Bonds, Crypto, Commodities & more!",
     description:
       "Access global markets including stocks, bonds, crypto, commodities, and more from one platform",
     color: "teal",
+    logos: [
+      { src: "/logos/apple.svg", alt: "Apple", name: "AAPL" },
+      { src: "/logos/microsoft.svg", alt: "Microsoft", name: "MSFT" },
+      { src: "/logos/google.svg", alt: "Google", name: "GOOGL" },
+      { src: "/logos/bitcoin.svg", alt: "Bitcoin", name: "BTC" },
+      { src: "/logos/solana.svg", alt: "Solana", name: "SOL" },
+    ],
   },
   {
+    showIcon: true,
     id: "privacy",
     icon: Wallet,
-    title: "Privacy First",
+    title: "No KYC",
+    subtitle: "Just connect & trade",
     shortTitle: "No KYC - Just connect & trade",
     description:
-      "No KYC  to start trading, no personal data collection. Just connect your wallet and start trading instantly",
+      "No KYC to start trading. Just connect your wallet and start trading instantly",
     color: "blue",
   },
   {
+    showIcon: true,
     id: "collateral",
     icon: Coins,
-    title: "Revolutionary Collateral",
+    title: "Unlimited Collateral",
+    subtitle: "Use any asset",
     shortTitle: "Use any asset as collateral",
     description:
       "Use any asset as collateral for trades. Maximize capital efficiency like never before",
