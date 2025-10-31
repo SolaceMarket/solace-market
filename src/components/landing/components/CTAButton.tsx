@@ -23,14 +23,24 @@ export function CTAButton() {
     setIsSubmitting(true);
 
     try {
-      // TODO: Replace with actual waitlist API endpoint
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+      // Waitly API integration
+      const apiKey =
+        "fV9fI0IAWuyEJFbnI6pdjArCInMWfH2aPtFcL8UpJV87wdRj1Oj7EuaLiTeSlV7W";
+      await fetch(
+        `https://api.waitlo.com/api/waitlist/subscribe?api_key=${apiKey}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        },
+      );
 
       setIsSubscribed(true);
       setEmail("");
       setShowEmailInput(false);
 
-      // Auto-hide success message after 3 seconds
       setTimeout(() => setIsSubscribed(false), 3000);
     } catch (error) {
       console.error("Failed to subscribe to waitlist:", error);

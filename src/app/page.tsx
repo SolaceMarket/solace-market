@@ -1,6 +1,7 @@
 "use client";
 
 import { Web3AuthProvider } from "@web3auth/modal/react";
+import { LandingPage } from "@/components/landing";
 import { HomePage } from "@/components/pages/HomePage";
 import { usePlatform } from "@/nextjs/hooks/usePlatform";
 import web3AuthContextConfig from "@/web3auth/web3authContext";
@@ -15,7 +16,8 @@ export default function Home() {
   return (
     <Web3AuthProvider config={web3AuthContextConfig}>
       {/* <HomePage /> */}
-      <Web3Onboarding />
+      {/* <Web3Onboarding /> */}
+      <LandingPage />
     </Web3AuthProvider>
   );
 }
