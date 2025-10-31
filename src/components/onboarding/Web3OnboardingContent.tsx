@@ -1,5 +1,6 @@
 "use client";
 
+import { HeroSection } from "../landing";
 import { OnboardingFeatures } from "./OnboardingFeatures";
 import { OnboardingLogo } from "./OnboardingLogo";
 import { OnboardingTitle } from "./OnboardingTitle";
@@ -18,11 +19,7 @@ export function Web3OnboardingContent({
 }: Web3OnboardingContentProps) {
   return (
     <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-md mx-auto">
-      <OnboardingLogo isInitialized={isInitialized} />
-
-      <OnboardingTitle isInitialized={isInitialized} />
-
-      <OnboardingFeatures />
+      <HeroSection />
 
       <WalletConnection
         isInitialized={isInitialized}
@@ -32,3 +29,25 @@ export function Web3OnboardingContent({
     </div>
   );
 }
+
+// export function Web3OnboardingContent({
+//   isInitialized,
+//   showWalletSelector,
+//   onConnectWallet,
+// }: Web3OnboardingContentProps) {
+//   return (
+//     <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-md mx-auto">
+//       <OnboardingLogo isInitialized={isInitialized} />
+
+//       <OnboardingTitle isInitialized={isInitialized} />
+
+//       <OnboardingFeatures />
+
+//       <WalletConnection
+//         isInitialized={isInitialized}
+//         showWalletSelector={showWalletSelector}
+//         onConnectWallet={onConnectWallet}
+//       />
+//     </div>
+//   );
+// }

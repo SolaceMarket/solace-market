@@ -17,7 +17,10 @@ export function HeroSection() {
   const shouldShowDesktopOnly = platform === "server";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{ height: 520 }}
+    >
       {/* Illumination Background Component */}
       <IlluminationBackground glowTheme="mixed" particleCount="abundant" />
 
@@ -26,7 +29,7 @@ export function HeroSection() {
 
         <FeaturesGrid shouldShowDesktopOnly={shouldShowDesktopOnly} />
 
-        <CTAButton />
+        {/* <CTAButton /> */}
 
         {/* <TrustMessage /> */}
       </div>

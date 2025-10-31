@@ -48,7 +48,9 @@ export function AssetSwapPage({ symbol }: AssetSwapPageProps) {
     );
   }
 
-  const handleTradeComplete = () => {
+  const handleTradeComplete = async () => {
+    // Simulate swap transaction
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     router.push("/wallet-portfolio");
   };
 

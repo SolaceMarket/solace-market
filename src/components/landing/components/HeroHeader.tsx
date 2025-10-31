@@ -6,9 +6,9 @@ export function HeroHeader() {
     <>
       {/* Logo above brand name with subtle glow */}
       <div className="mb-4">
-        <GlowEffect variant="logo" glowColor="emerald" intensity="subtle">
-          <SolaceLogo size={80} className="mx-auto mb-3 md:w-24 md:h-24" />
-        </GlowEffect>
+        {/* <GlowEffect variant="logo" glowColor="emerald" intensity="subtle"> */}
+        <SolaceLogo size={80} className="mx-auto mb-3 md:w-24 md:h-24" />
+        {/* </GlowEffect> */}
         <h1 className="text-3xl md:text-4xl font-bold text-white">
           Solace.Market
         </h1>
