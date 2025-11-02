@@ -36,7 +36,7 @@ export const FEATURES = [
     id: "collateral",
     icon: Coins,
     title: "Unlimited Collateral",
-    subtitle: "Use any asset for leveral",
+    subtitle: "Use any asset for leverage",
     shortTitle: "Use any asset as collateral for leverage",
     description:
       "Use any asset as collateral for trades. Maximize capital efficiency like never before",
